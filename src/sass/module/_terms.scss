@@ -1,0 +1,29 @@
+@use "global" as *;
+
+// WordPress化に対応し、セレクタを変更
+// margin-top はWordPress管理画面のスペーサーで対応
+.terms h2 {
+  color: $black;
+  font-size: rem(24);
+  font-weight: $medium;
+  line-height: 1;
+  @include mq("md") {
+    font-size: rem(32);
+  }
+}
+.terms p {
+  color: $black;
+  font-size: rem(16);
+  font-weight: $regular;
+  line-height: calc(32 / 16);
+}
+.terms ol {
+  list-style: decimal;
+  margin-left: rem(24);
+}
+.terms ol li {
+  color: $black;
+  font-size: rem(16);
+  font-weight: $regular;
+  line-height: calc(32 / 16);
+}
