@@ -33,12 +33,12 @@
               <div class="blog-article__title">
                 <h1><?php the_title(); ?></h1>
               </div>
-              <!-- アイキャッチ画像があれば表示する -->
-              <?php if (has_post_thumbnail()): ?>
+            <!-- アイキャッチ画像があれば表示する -->
+            <?php if (has_post_thumbnail()): ?>
               <figure class="blog-article__thumbnail">
                 <?php the_post_thumbnail('full'); ?>
               </figure>
-              <?php endif; ?>
+            <?php endif; ?>
               <div class="blog-article__content">
                 <?php the_content(); ?>
               </div>

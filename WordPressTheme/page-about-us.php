@@ -59,15 +59,15 @@
           <div class="page-gallery__images js-modal">
           <!-- Smart Custom Fieldsで実装 -->
           <?php 
-            $images = SCF::get('gallery_images'); //SCF::get('カスタムフィールドのグループ名')
+            $images = SCF::get('gallery_images');
             if ( !empty($images)):
               foreach ($images as $image):
-                $id = $image['gallery']; //$image['カスタムフィールドの名前']
+                $id = $image['gallery'];
                 $alt = get_post_meta($id, '_wp_attachment_image_alt', true);
                 $src = wp_get_attachment_image_src($id, 'full');
           ?>
             <picture>
-              <img src="<?php echo esc_url( $src[0]); ?>" alt="<?php echo esc_attr( $alt); ?>" width="<?php echo esc_attr( $src[1]); ?>" height="<?php echo esc_attr( $src[2]); ?>" loading="lazy">
+              <img src="<?php echo esc_url($src[0]); ?>" alt="<?php echo esc_attr($alt); ?>" width="<?php echo esc_attr($src[1]); ?>" height="<?php echo esc_attr($src[2]); ?>" loading="lazy">
             </picture>
           <?php endforeach; endif; ?>
           </div>

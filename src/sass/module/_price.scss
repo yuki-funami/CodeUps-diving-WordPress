@@ -18,9 +18,10 @@
     left: max(calc(50% - 38.8rem), rem(16));
     width: rem(437);
     height: rem(201);
-    background-image: url(../images/svg/sea-goldie_accent.svg);
-    background-repeat: no-repeat;
-    background-size: cover;
+    mask-image: url(../images/svg/sea-goldie.svg);
+    mask-size: cover;
+    mask-repeat: no-repeat;
+    background-color: $accent;
   }
 }
 .price__inner {

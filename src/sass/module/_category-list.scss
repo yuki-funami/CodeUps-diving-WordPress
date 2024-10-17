@@ -13,8 +13,9 @@
 .category-list__item {
   width: 100%;
 }
-.category-list__item button {
+.category-list__item a {
   position: relative;
+  display: inline-block;
   min-width: rem(162);
   width: 100%;
   color: $accent;
@@ -29,13 +30,13 @@
   padding-inline: 0;
   transition: color 0.2s, background-color 0.2s;
 }
-@media (hover) {
-  .category-list__item button:hover {
+@media (any-hover: hover) {
+  .category-list__item a:hover {
     color: $white;
     background-color: $accent;
   }
 }
-.category-list__item button.is-active {
+.category-list__item a.is-active {
   color: $white;
   background-color: $accent;
 }

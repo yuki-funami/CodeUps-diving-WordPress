@@ -27,8 +27,11 @@
 
     <section class="page-terms layout-page-terms fish fish--terms">
       <div class="page-terms__inner inner">
-        <div class="page-terms__content terms">
-          <?php the_content(); ?>
+        <div class="page-terms__container terms">
+          <h2 class="terms__title"><?php the_title(); ?></h2>
+          <div class="terms__content">
+            <?php the_content(); ?>
+          </div>
         </div>
         <!-- /.page-terms__content .terms -->
       </div>

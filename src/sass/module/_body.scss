@@ -25,3 +25,9 @@ body.is-fixed {
   height: 100%;
   z-index: -1;
 }
+//////////////////
+// 404
+//////////////////
+body.is-404 {
+  background-color: $accent;
+}

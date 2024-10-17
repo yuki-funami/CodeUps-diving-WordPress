@@ -1,0 +1,160 @@
+@use "global" as *;
+
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+  &.wpcf7-not-valid {
+    border: 1px solid $red;
+    background-color: rgba($color: $red, $alpha: 0.2);
+
+    &::placeholder {
+      color: $white;
+    }
+  }
+}
+textarea {
+  &.wpcf7-not-valid {
+    border: 1px solid $red;
+    background-color: rgba($color: $red, $alpha: 0.2);
+  }
+}
+.wpcf7-not-valid-tip {
+  color: $red;
+  font-size: rem(14);
+  font-weight: $regular;
+  line-height: calc(20 / 14);
+}
+.wpcf7-list-item {
+  display: block;
+  margin-left: 0;
+}
+.wpcf7-list-item:not(:first-child) {
+  margin-top: rem(7);
+}
+.wpcf7-list-item label {
+  position: relative;
+}
+.wpcf7-list-item input[type="checkbox"] {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+
+  &:checked {
+    + .wpcf7-list-item-label {
+      &::after {
+        content: "";
+        position: absolute;
+        display: block;
+        top: rem(9);
+        left: rem(2);
+        transform: translateY(-50%) rotate(-45deg);
+        width: calc(rem(14) * 0.7);
+        height: calc(rem(14) * 0.4);
+        border-left: 2px solid $red;
+        border-bottom: 2px solid $red;
+        opacity: 1;
+      }
+    }
+  }
+
+  &:focus-visible {
+    + .wpcf7-list-item-label {
+      &::before {
+        box-shadow: 0 0 0 2px rgba($accent, 0.6);
+      }
+    }
+  }
+}
+.wpcf7-list-item-label {
+  position: relative;
+  display: block;
+  color: $black;
+  font-size: rem(16);
+  font-weight: $regular;
+  line-height: calc(20 / 16);
+  padding-left: rem(22);
+
+  &::before {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: rem(14);
+    height: rem(14);
+    border: 1px solid $accent;
+  }
+
+  &::after {
+    content: "";
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+}
+.wpcf7-not-valid .wpcf7-list-item-label {
+  &::before {
+    border: 1px solid $red;
+    background-color: rgba($color: $red, $alpha: 0.2);
+  }
+}
+.wpcf7-acceptance {
+  .wpcf7-list-item-label {
+    font-size: rem(14);
+    line-height: calc(22 / 14);
+    padding-left: rem(30);
+    @include mq("md") {
+      padding-left: rem(36);
+    }
+
+    &::before {
+      width: rem(22);
+      height: rem(22);
+    }
+  }
+
+  .wpcf7-list-item input[type="checkbox"] {
+    &:checked {
+      + .wpcf7-list-item-label {
+        &::after {
+          content: "";
+          position: absolute;
+          display: block;
+          top: rem(9);
+          left: rem(3);
+          transform: translateY(-50%) rotate(-45deg);
+          width: calc(rem(22) * 0.7);
+          height: calc(rem(22) * 0.4);
+          border-left: 2px solid $red;
+          border-bottom: 2px solid $red;
+          opacity: 1;
+        }
+      }
+    }
+    
+    &:focus-visible {
+      + .wpcf7-list-item-label {
+        &::before {
+          box-shadow: 0 0 0 3px rgba($accent, 0.6);
+        }
+      }
+    }
+  }
+}
+.wpcf7-submit {
+  color: $white;
+  font-size: rem(14);
+  font-weight: $regular;
+  line-height: calc(22 / 14);
+  font-family: inherit;
+  text-transform: capitalize;
+  padding: 0;
+}
+// Contact Form 7で自動挿入されるローディング画像を非表示
+.wpcf7-spinner {
+  display: none;
+}

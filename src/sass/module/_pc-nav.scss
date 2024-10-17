@@ -34,7 +34,7 @@
   transform: scale(0, 1);
   transform-origin: center top;
 }
-@media (hover) {
+@media (any-hover: hover) {
   .pc-nav__item a:hover::after {
     transform: scale(1, 1);
   }

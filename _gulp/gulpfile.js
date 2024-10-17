@@ -118,7 +118,7 @@ return src(srcPath.img)
 imagemin(
 [
 imageminMozjpeg({ quality: 80 }), // JPEG画像の圧縮
-imageminPngquant(), // PNG画像の圧縮
+imageminPngquant({quality: [0.7, 0.8]}), // PNG画像の圧縮
 imageminSvgo({ plugins: [{ removeViewbox: false }] }), // SVG画像の圧縮
 ],
 { verbose: true }

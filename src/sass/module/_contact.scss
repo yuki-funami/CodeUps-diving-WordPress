@@ -10,9 +10,10 @@
   right: calc(50% - 10.8rem);
   width: rem(109);
   height: rem(50);
-  background-image: url(../images/svg/sea-goldie_accent.svg);
-  background-repeat: no-repeat;
-  background-size: cover;
+  mask-image: url(../images/svg/sea-goldie.svg);
+  mask-size: cover;
+  mask-repeat: no-repeat;
+  background-color: $accent;
   @include mq("md") {
     top: rem(-40);
     right: max(calc(50% - 41.9rem), rem(16));

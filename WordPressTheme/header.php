@@ -7,7 +7,7 @@
   <?php wp_head(); ?>
 </head>
 
-<body>
+<body class="<?php if (is_404()) echo 'is-404'; ?>">
 <?php $is_front_page = is_front_page(); ?>
 <?php if ($is_front_page): ?>
   <div class="loader">
@@ -67,13 +67,13 @@
             <a href="<?php echo esc_url( home_url( '/campaign/' )); ?>">キャンペーン</a>
             <ul class="sp-nav__small-items">
               <li class="sp-nav__small-item">
-                <a href="">ライセンス取得</a>
+                <a href="<?php echo esc_url( home_url( '/campaign-category/license/' )); ?>">ライセンス取得</a>
               </li>
               <li class="sp-nav__small-item">
-                <a href="">貸切体験ダイビング</a>
+                <a href="<?php echo esc_url( home_url( '/campaign-category/experience/' )); ?>">貸切体験ダイビング</a>
               </li>
               <li class="sp-nav__small-item">
-                <a href="">ナイトダイビング</a>
+                <a href="<?php echo esc_url( home_url( '/campaign-category/fun/' )); ?>">ナイトダイビング</a>
               </li>
             </ul>
           </li>
@@ -104,13 +104,13 @@
             <a href="<?php echo esc_url( home_url( '/price/' )); ?>">料金一覧</a>
             <ul class="sp-nav__small-items">
               <li class="sp-nav__small-item">
-                <a href="./page-price.html#license">ライセンス講習</a>
+                <a href="<?php echo esc_url( home_url( '/price/#license' )); ?>">ライセンス講習</a>
               </li>
               <li class="sp-nav__small-item">
-                <a href="./page-price.html#experience">体験ダイビング</a>
+                <a href="<?php echo esc_url( home_url( '/price/#experience' )); ?>">体験ダイビング</a>
               </li>
               <li class="sp-nav__small-item">
-                <a href="./page-price.html#fun">ファンダイビング</a>
+                <a href="<?php echo esc_url( home_url( '/price/#fun' )); ?>">ファンダイビング</a>
               </li>
             </ul>
           </li>

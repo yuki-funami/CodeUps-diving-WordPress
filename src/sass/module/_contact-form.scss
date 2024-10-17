@@ -1,17 +1,5 @@
 @use "global" as *;
 
-.contact-form__error {
-  text-align: center;
-  margin-bottom: rem(40);
-}
-.contact-form__error-message {
-  display: inline-block;
-  text-align-last: left;
-  color: $red;
-  font-size: rem(14);
-  font-weight: $regular;
-  line-height: calc(20 / 14);
-}
 .contact-form__row {
   padding-bottom: rem(24);
   border-bottom: 1px dashed $accent;
@@ -21,28 +9,22 @@
     padding-bottom: rem(39);
   }
 }
-.contact-form__row--checkbox {
-  padding-bottom: rem(26);
-  @include mq("md") {
-    padding-bottom: rem(39);
-  }
-}
-.contact-form__row.contact-form__row--textarea {
-  padding-bottom: rem(18);
-  @include mq("md") {
-    padding-bottom: rem(34);
-  }
-}
 .contact-form__row:not(:first-of-type) {
   margin-top: rem(24);
   @include mq("md") {
     margin-top: rem(40);
   }
 }
-.contact-form__row dt,
-.contact-form__row fieldset legend {
+.contact-form__row:has(fieldset) {
+  padding-bottom: rem(26);
   @include mq("md") {
-    width: rem(220);
+    padding-bottom: rem(39);
+  }
+}
+.contact-form__row:has(textarea) {
+  padding-bottom: rem(18);
+  @include mq("md") {
+    padding-bottom: rem(34);
   }
 }
 .contact-form__row dt label,
@@ -56,6 +38,10 @@
   font-weight: $bold;
   line-height: calc(20 / 16);
   padding: 0;
+  @include mq("md") {
+    width: rem(220);
+  }
+
   & span {
     color: $white;
     font-size: rem(12);
@@ -75,58 +61,23 @@
     margin-top: 0;
   }
 }
-.contact-form__row.contact-form__row--select dd {
+.contact-form__row dd:has(select) {
   position: relative;
   margin-top: rem(18);
   @include mq("md") {
     margin-top: rem(-3);
   }
-}
-.contact-form__row.contact-form__row--select dd::after {
-  content: "";
-  position: absolute;
-  top: rem(12);
-  right: rem(8);
-  width: rem(12);
-  aspect-ratio: 1/cos(30deg);
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-  background-color: $accent;
-}
-.contact-form__fieldset-content {
-  margin-top: rem(18);
-  @include mq("md") {
-    margin-top: rem(4);
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: rem(12);
+    right: rem(8);
+    width: rem(12);
+    aspect-ratio: 1/cos(30deg);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    background-color: $accent;
   }
-}
-.contact-form__fieldset-item:not(:first-child) {
-  margin-top: rem(7);
-}
-.contact-form__fieldset-item label {
-  position: relative;
-}
-.contact-form__privacy {
-  padding-inline: rem(31);
-  margin-top: rem(40);
-  @include mq("md") {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: rem(80);
-  }
-}
-.contact-form__privacy label {
-  position: relative;
-}
-.contact-form__submit {
-  text-align: center;
-  padding-bottom: rem(4);
-  margin-top: rem(24);
-  @include mq("md") {
-    margin-top: rem(41);
-  }
-}
-fieldset {
-  display: contents;
 }
 input[type="text"],
 input[type="email"],
@@ -139,15 +90,18 @@ input[type="tel"] {
   width: 100%;
   border: 1px solid $accent;
   padding: rem(7) rem(16);
+
   &::placeholder {
     color: $pastel;
   }
-  &.is-invalid {
-    border: 1px solid $red;
-    background-color: rgba($color: $red, $alpha: 0.2);
-    &::placeholder {
-      color: $white;
-    }
+}
+fieldset {
+  display: contents;
+}
+.contact-form__fieldset-content {
+  margin-top: rem(18);
+  @include mq("md") {
+    margin-top: rem(4);
   }
 }
 select {
@@ -168,122 +122,82 @@ textarea {
   height: rem(200);
   border: 1px solid $accent;
   padding: rem(8);
-  &.is-invalid {
-    border: 1px solid $red;
-    background-color: rgba($color: $red, $alpha: 0.2);
+}
+.contact-form__privacy {
+  padding-inline: rem(31);
+  margin-top: rem(40);
+  @include mq("md") {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: rem(80);
   }
 }
-.contact-form__fieldset-item input[type="checkbox"] {
-  position: absolute;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  white-space: nowrap;
-  + span {
-    position: relative;
-    display: block;
-    color: $black;
-    font-size: rem(16);
-    font-weight: $regular;
-    line-height: calc(20 / 16);
-    padding-left: rem(22);
-    &::before {
-      content: "";
-      position: absolute;
-      display: block;
-      top: 50%;
-      left: 0;
-      transform: translateY(-50%);
-      width: rem(14);
-      height: rem(14);
-      border: 1px solid $accent;
-    }
-    &::after {
-      content: "";
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-  }
-  &:checked {
-    + span {
-      &::after {
-        content: "";
-        position: absolute;
-        display: block;
-        top: rem(9);
-        left: rem(2);
-        transform: translateY(-50%) rotate(-45deg);
-        width: calc(rem(14) * 0.7);
-        height: calc(rem(14) * 0.4);
-        border-left: 2px solid $red;
-        border-bottom: 2px solid $red;
-        opacity: 1;
-      }
-    }
-  }
-  &:focus-visible + span {
-    &::before {
-      box-shadow: 0 0 0 2px rgba($accent, 0.6);
-    }
+.contact-form__submit {
+  text-align: center;
+  padding-bottom: rem(4);
+  margin-top: rem(24);
+  @include mq("md") {
+    margin-top: rem(41);
   }
 }
-.contact-form__privacy input[type="checkbox"] {
+.contact-form__submit-button {
+  cursor: pointer;
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: rem(12);
+  width: rem(202);
+  background-color: $accent;
+  border: 1px solid $accent;
+  padding: rem(15);
+  margin-left: rem(-3);
+  z-index: 1;
+}
+.contact-form__submit-button::before {
+  content: "";
   position: absolute;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  white-space: nowrap;
-  + span {
-    position: relative;
-    display: block;
-    color: $black;
-    font-size: rem(14);
-    font-weight: $regular;
-    line-height: calc(22 / 14);
-    padding-left: rem(30);
-    @include mq("md") {
-      padding-left: rem(36);
-    }
-    &::before {
-      content: "";
-      position: absolute;
-      display: block;
-      top: 0;
-      left: 0;
-      width: rem(22);
-      height: rem(22);
-      border: 1px solid $accent;
-    }
-    &::after {
-      content: "";
-      opacity: 0;
-      transition: opacity 0.2s;
+  top: rem(4);
+  left: rem(3);
+  width: 101%;
+  height: 101%;
+  background-color: transparent;
+  border: 1px solid $accent;
+  z-index: -1;
+}
+.contact-form__submit-button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $white;
+  transform: scale(0, 1);
+  transform-origin: left top;
+  transition: 0.2s cubic-bezier(0.44, 0, 0.5, 1);
+  z-index: -1;
+}
+.contact-form__submit-button span:last-child {
+  display: block;
+  width: rem(43);
+  height: rem(7);
+  border-bottom: 1px solid $white;
+  border-right: 2px solid $white;
+  transform: skew(50deg);
+  margin-top: rem(-3);
+}
+@media (any-hover: hover) {
+  .contact-form__submit-button:hover::after {
+    transform: scale(1, 1);
+  }
+  .contact-form__submit-button:hover {
+    .wpcf7-submit {
+      color: $accent;
     }
   }
-  &:checked {
-    + span {
-      &::after {
-        content: "";
-        position: absolute;
-        display: block;
-        top: rem(9);
-        left: rem(3);
-        transform: translateY(-50%) rotate(-45deg);
-        width: calc(rem(22) * 0.7);
-        height: calc(rem(22) * 0.4);
-        border-left: 2px solid $red;
-        border-bottom: 2px solid $red;
-        opacity: 1;
-      }
-    }
-  }
-  &:focus-visible + span {
-    &::before {
-      box-shadow: 0 0 0 3px rgba($accent, 0.6);
-    }
+  .contact-form__submit-button:hover span:last-child {
+    border-color: $accent;
   }
 }

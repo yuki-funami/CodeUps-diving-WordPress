@@ -7,19 +7,19 @@
   align-items: center;
   gap: rem(6);
   width: rem(202);
+  color: $white;
+  font-size: rem(14);
+  font-weight: $regular;
+  line-height: calc(22 / 14);
+  font-family: $english-font-family;
   background-color: $accent;
   border: 1px solid $accent;
   padding: rem(15);
   margin-left: rem(-3);
   z-index: 1;
 }
-.button--white {
-  gap: rem(13);
-  background-color: $white;
-  border-color: $white;
-}
-.button.button--submit {
-  gap: rem(12);
+.button::first-letter {
+  text-transform: uppercase;
 }
 .button::before {
   content: "";
@@ -31,9 +31,6 @@
   background-color: transparent;
   border: 1px solid $accent;
   z-index: -1;
-}
-.button--white::before {
-  border-color: $white;
 }
 .button::after {
   content: "";
@@ -48,21 +45,17 @@
   transition: 0.2s cubic-bezier(0.44, 0, 0.5, 1);
   z-index: -1;
 }
+.button--white {
+  gap: rem(13);
+  color: $accent;
+  background-color: $white;
+  border-color: $white;
+}
+.button--white::before {
+  border-color: $white;
+}
 .button--white::after {
   background-color: $accent;
-}
-.button span {
-  color: $white;
-  font-size: rem(14);
-  font-weight: $regular;
-  line-height: calc(22 / 14);
-  font-family: $english-font-family;
-}
-.button--white span {
-  color: $accent;
-}
-.button.button--submit span {
-  font-family: inherit;
 }
 .button span::first-letter {
   text-transform: uppercase;
@@ -79,7 +72,7 @@
 .button--white span:last-child {
   border-color: $accent;
 }
-@media (hover) {
+@media (any-hover: hover) {
   .button:hover span {
     color: $accent;
   }

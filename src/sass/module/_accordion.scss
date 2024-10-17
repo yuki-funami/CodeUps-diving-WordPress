@@ -1,11 +1,11 @@
 @use "global" as *;
 
+// display: list-item;以外を指定してデフォルトの三角形アイコンを消す
 summary {
-  // display: list-item;以外を指定してデフォルトの三角形アイコンを消す
   display: block;
 }
+// Safariで表示されるデフォルトの三角形アイコンを消す
 summary::-webkit-details-marker {
-  // Safariで表示されるデフォルトの三角形アイコンを消す
   display: none;
 }
 .accordion.is-opened {

@@ -2,7 +2,7 @@
 
 // WordPress化に対応し、セレクタを変更
 // margin-top はWordPress管理画面のスペーサーで対応
-.terms h2 {
+.terms__title {
   color: $black;
   font-size: rem(24);
   font-weight: $medium;
@@ -11,19 +11,15 @@
     font-size: rem(32);
   }
 }
-.terms p {
+.terms__content {
   color: $black;
   font-size: rem(16);
   font-weight: $regular;
   line-height: calc(32 / 16);
+  margin-top: rem(45);
 }
-.terms ol {
+.terms__content ul,
+.terms__content ol {
   list-style: decimal;
   margin-left: rem(24);
-}
-.terms ol li {
-  color: $black;
-  font-size: rem(16);
-  font-weight: $regular;
-  line-height: calc(32 / 16);
 }

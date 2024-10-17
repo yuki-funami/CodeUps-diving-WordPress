@@ -14,9 +14,10 @@
     left: max(calc(50% - 38.8rem), rem(16));
     width: rem(437);
     height: rem(201);
-    background-image: url(../images/svg/sea-goldie.svg);
-    background-repeat: no-repeat;
-    background-size: cover;
+    mask-image: url(../images/svg/sea-goldie.svg);
+    mask-size: cover;
+    mask-repeat: no-repeat;
+    background-color: $pastel;
   }
 }
 .blog::after {
@@ -28,8 +29,8 @@
     width: 100%;
     height: rem(500);
     background-image: url(../images/common/top-blog.png);
-    background-repeat: no-repeat;
     background-size: cover;
+    background-repeat: no-repeat;
     z-index: -1;
   }
 }

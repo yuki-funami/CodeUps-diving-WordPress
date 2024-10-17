@@ -197,15 +197,6 @@ jQuery(function ($) { // この中であればWordpressでも「$」が使用可
   });
 
   /*==========================
-  # category
-  ==========================*/
-  $('.js-category').on('click', function () {
-    $('.js-category').removeClass('is-active');
-    $(this).addClass('is-active');
-    return false;
-  });
-
-  /*==========================
   # tab
   ==========================*/
   /*
@@ -257,107 +248,42 @@ jQuery(function ($) { // この中であればWordpressでも「$」が使用可
   # price
   ==========================*/
   $(document).ready(function () {
-    // ページ読み込み時にURLのハッシュがあればスクロール
+    // ページ読み込み時にハッシュがあればスクロール
     scrollToHash();
     
-    // 別ページからのリンクがクリックされた場合の処理
-    $('a[href*="page-price.html"]').on('click', function() {
-      const targetHref = $(this).attr('href');
-      const hash = targetHref.split('#')[1];
+    // リンクをクリックした際にスクロール
+    $('a[href*="#"]').on('click', function(e) {
+      const hash = this.hash;
       if (hash) {
+        e.preventDefault();
         scrollToHash(hash);
+        history.pushState(null, null, hash);
       }
+    });
+
+    // ブラウザの「戻る」や「進む」でハッシュが変更された場合にスクロール
+    $(window).on('hashchange', function() {
+      scrollToHash();
     });
 
     // ハッシュに対応するtableが存在すればスクロール
     function scrollToHash(hash) {
-      const target = hash ? '#' + hash : window.location.hash;
+      const target = hash ? hash : window.location.hash;
       if ($(target).length) {
         const targetOffset = $(target).offset().top;
         const headerHeight = $('.header').innerHeight();
         const speed = 1;
         $('html, body').animate({ scrollTop: targetOffset - (headerHeight + 20 )}, speed);
       }
-      return false;
     }
   });
 
   /*==========================
-  # form
+  # sidebar
   ==========================*/
-  $(document).ready(function () {
-    $('.contact-form__error').hide();
-    $.validator.addMethod(
-      'telNumber',
-      function (value, element) {
-        return this.optional(element) || /[\d\-]$/.test(value);
-      },
-      '※半角数字で入力してください。'
-    );
-
-    $('.js-form').validate({
-      rules: {
-        name: {
-          required: true,
-        },
-        email: {
-          required: true,
-          email: true,
-        },
-        tel: {
-          required: true,
-          telNumber: true,
-        },
-        kind: {
-          required: true,
-          minlength: 1,
-        },
-        contents: {
-          required: true,
-        },
-        'inquiries[]': {
-          required: true,
-        },
-        'privacy-policy[]': {
-          required: true,
-        },
-      },
-      messages: {
-        name: {
-          required: '※必須項目が入力されていません。<br class="u-mobile"><span class="u-mobile">&emsp;</span>入力してください。',
-        },
-        email: {
-          required: '※必須項目が入力されていません。<br class="u-mobile"><span class="u-mobile">&emsp;</span>入力してください。',
-          email: '※有効なメールアドレスを入力してください。',
-        },
-        tel: {
-          required: '※必須項目が入力されていません。<br class="u-mobile"><span class="u-mobile">&emsp;</span>入力してください。',
-        },
-        contents: {
-          required: '※必須項目が入力されていません。<br class="u-mobile"><span class="u-mobile">&emsp;</span>入力してください。',
-        },
-        'inquiries[]': {
-          required: '※必須項目が選択されていません。<br class="u-mobile"><span class="u-mobile">&emsp;</span>選択してください。',
-        },
-        'privacy-policy[]': {
-          required: '※個人情報の取り扱いについて同意が必要です。',
-        },
-      },
-      errorElement: 'span',
-      errorPlacement: function (error, element) { // error: 挿入対象要素, element: validation対象のinput要素
-        $('.js-error').html(error);
-        element.addClass('is-invalid');
-        $('.contact-form__error').show();
-      },
-    });
-
-    $('.js-form').submit(function () {
-      if (!$('.js-form').valid()) {
-        return false; //フォーム送信を停止
-      } else {
-        window.location.href = 'page-contact-thanks.html';
-      }
-    });
+  $('.side-archive-list__year').on('click', function () {
+    $(this).toggleClass('is-open');
+    $(this).children('.side-archive-list__child').slideToggle();
   });
 
 });
@@ -372,7 +298,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 /*
-ブラウザの標準機能(Web Animations API)を使ってアコーディオンのアニメーションを制御します
+ブラウザの標準機能(Web Animations API)を使ってアコーディオンのアニメーションを制御
 */
 
 function setUpAccordion() {

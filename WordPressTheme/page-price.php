@@ -48,20 +48,20 @@
           foreach ($data as $key => $items):
             if ( !empty($items)):
         ?>
-          <table class="page-price-tables__table page-price-table" id="<?php echo esc_attr( $key); ?>" aria-label="<?php echo esc_html( $labels[$key]).'の価格表'; ?>">
+          <table class="page-price-tables__table page-price-table" id="<?php echo esc_attr($key); ?>" aria-label="<?php echo esc_html($labels[$key]).'の価格表'; ?>">
             <thead class="page-price-table__head">
               <tr>
                 <th>
                   <img src="<?php echo esc_url( get_theme_file_uri()); ?>/assets/images/svg/whale.svg" alt="CodeUps" width="24" height="24">
-                  <p><?php echo esc_html( $labels[$key]); ?></p>
+                  <p><?php echo esc_html($labels[$key]); ?></p>
                 </th>
               </tr>
             </thead>
             <tbody class="page-price-table__body">
             <?php foreach ($items as $item): ?>
               <tr>
-                <th><?php echo esc_html( $item[$courses[$key][0]]); ?></th>
-                <td><?php echo esc_html( $item[$courses[$key][1]]); ?></td>
+                <th><?php echo esc_html($item[$courses[$key][0]]); ?></th>
+                <td><?php echo esc_html($item[$courses[$key][1]]); ?></td>
               </tr>
             <?php endforeach; ?>
             </tbody>

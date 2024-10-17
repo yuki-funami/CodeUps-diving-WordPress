@@ -62,7 +62,7 @@
   border: 1px solid $accent;
   transition: color 0.2s, background-color 0.2s, height 0.2s;
 }
-@media (hover) {
+@media (any-hover: hover) {
   .wp-pagenavi a:hover {
     color: $white;
     background-color: $accent;
@@ -71,7 +71,6 @@
   .nextpostslink:hover::before {
     border-color: $white;
   }
-
 }
 .wp-pagenavi .current {
   color: $white;

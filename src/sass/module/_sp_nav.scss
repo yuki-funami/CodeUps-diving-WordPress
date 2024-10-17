@@ -47,9 +47,10 @@
   left: rem(-22);
   width: rem(18);
   height: rem(18);
-  background-image: url(../images/svg/starfish.svg);
-  background-size: cover;
-  background-repeat: no-repeat;
+  mask-image: url(../images/svg/starfish.svg);
+  mask-size: cover;
+  mask-repeat: no-repeat;
+  background-color: $white;
 }
 .sp-nav__small-item {
   margin-top: rem(24);

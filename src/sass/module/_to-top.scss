@@ -49,7 +49,7 @@
   width: inherit;
   height: inherit;
 }
-@media (hover) {
+@media (any-hover: hover) {
   .to-top:hover {
     background-color: rgba($color: $accent, $alpha: 1);
     border: 1px solid $white;

@@ -1,4 +1,4 @@
-  <?php if ( !is_page( 'contact' ) && !is_404() ): ?>
+  <?php if ( !is_page( 'contact' ) && !is_page( 'thanks' ) && !is_404() ): ?>
     <section class="contact layout-contact">
       <div class="contact__inner inner">
         <div class="contact__body">
@@ -48,7 +48,17 @@
   </main>
   <!-- /.main -->
 
-  <footer class="footer layout-footer <?php if (is_404()) echo 'layout-footer--404'; ?>">
+  <footer class="footer layout-footer
+    <?php 
+      if (is_404()) {
+        echo 'layout-footer--404';
+      } elseif (is_page( 'contact' )) {
+        echo 'layout-footer--contact';
+      } elseif (is_page( 'contact/thanks' )) {
+        echo 'layout-footer--thanks';
+      }
+    ?>
+  ">
     <div class="footer__inner inner">
       <div class="footer__upper">
         <figure class="footer__logo">
@@ -77,13 +87,13 @@
             <a href="<?php echo esc_url( home_url( '/campaign/' )); ?>">キャンペーン</a>
             <ul class="nav__small-items">
               <li class="nav__small-item">
-                <a href="">ライセンス取得</a>
+                <a href="<?php echo esc_url( home_url( '/campaign-category/license/' )); ?>">ライセンス取得</a>
               </li>
               <li class="nav__small-item">
-                <a href="">貸切体験ダイビング</a>
+                <a href="<?php echo esc_url( home_url( '/campaign-category/experience/' )); ?>">貸切体験ダイビング</a>
               </li>
               <li class="nav__small-item">
-                <a href="">ナイトダイビング</a>
+                <a href="<?php echo esc_url( home_url( '/campaign-category/fun/' )); ?>">ナイトダイビング</a>
               </li>
             </ul>
           </li>
@@ -114,13 +124,13 @@
             <a href="<?php echo esc_url( home_url( '/price/' )); ?>">料金一覧</a>
             <ul class="nav__small-items">
               <li class="nav__small-item">
-                <a href="./page-price.html#license">ライセンス講習</a>
+                <a href="<?php echo esc_url( home_url( '/price/#license' )); ?>">ライセンス講習</a>
               </li>
               <li class="nav__small-item">
-                <a href="./page-price.html#experience">体験ダイビング</a>
+                <a href="<?php echo esc_url( home_url( '/price/#experience' )); ?>">体験ダイビング</a>
               </li>
               <li class="nav__small-item">
-                <a href="./page-price.html#fun">ファンダイビング</a>
+                <a href="<?php echo esc_url( home_url( '/price/#fun' )); ?>">ファンダイビング</a>
               </li>
             </ul>
           </li>

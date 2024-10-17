@@ -45,9 +45,10 @@
     transform: translateY(-50%);
     width: rem(64);
     height: rem(64);
-    background-image: url(../images/svg/whale_accent.svg);
-    background-repeat: no-repeat;
-    background-size: cover;
+    mask-image: url(../images/svg/whale.svg);
+    mask-size: cover;
+    mask-repeat: no-repeat;
+    background-color: $accent;
     transition: background-image 0.2s;
   }
 }
@@ -60,9 +61,10 @@
     transform: translateY(-50%);
     width: rem(64);
     height: rem(64);
-    background-image: url(../images/svg/shark_accent.svg);
-    background-repeat: no-repeat;
-    background-size: cover;
+    mask-image: url(../images/svg/shark.svg);
+    mask-size: cover;
+    mask-repeat: no-repeat;
+    background-color: $accent;
     transition: background-image 0.2s;
   }
 }
@@ -75,30 +77,22 @@
     transform: translateY(-50%);
     width: rem(64);
     height: rem(64);
-    background-image: url(../images/svg/fish_accent.svg);
-    background-repeat: no-repeat;
-    background-size: cover;
+    mask-image: url(../images/svg/fish.svg);
+    mask-size: cover;
+    mask-repeat: no-repeat;
+    background-color: $accent;
     transition: background-image 0.2s;
   }
 }
-@media (hover) {
+@media (any-hover: hover) {
   .tab-list__item button:hover {
     color: $white;
     background-color: $accent;
-  }
-  .tab-list__item:nth-child(1) > button:hover:before {
-    @include mq("md") {
-      background-image: url(../images/svg/whale.svg);
-    }
-  }
-  .tab-list__item:nth-child(2) > button:hover::before {
-    @include mq("md") {
-      background-image: url(../images/svg/shark.svg);
-    }
-  }
-  .tab-list__item:nth-child(3) > button:hover::before {
-    @include mq("md") {
-      background-image: url(../images/svg/fish.svg);
+
+    &::before {
+      @include mq("md") {
+        background-color: $white;
+      }
     }
   }
 }
@@ -108,19 +102,10 @@
   @include mq("md") {
     box-shadow: 4px 4px 8px rgba($shadow, 0.25);
   }
-}
-.tab-list__item:nth-child(1) > button.is-active::before {
-  @include mq("md") {
-    background-image: url(../images/svg/whale.svg);
-  }
-}
-.tab-list__item:nth-child(2) > button.is-active::before {
-  @include mq("md") {
-    background-image: url(../images/svg/shark.svg);
-  }
-}
-.tab-list__item:nth-child(3) > button.is-active::before {
-  @include mq("md") {
-    background-image: url(../images/svg/fish.svg);
+
+  &::before {
+    @include mq("md") {
+      background-color: $white;
+    }
   }
 }
