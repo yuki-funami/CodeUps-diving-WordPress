@@ -62,7 +62,7 @@
     <div class="footer__inner inner">
       <div class="footer__upper">
         <figure class="footer__logo">
-          <img src="<?php echo esc_url( get_theme_file_uri()); ?>/assets/images/svg/CodeUps_logo.svg" alt="CodeUps" width="200" height="75" loading="lazy">
+          <img src="<?php echo esc_url( get_theme_file_uri()); ?>/assets/images/svg/CodeUps.svg" alt="CodeUps" width="200" height="75" loading="lazy">
         </figure>
         <div class="footer__sns footer-sns">
           <ul class="footer-sns__items">

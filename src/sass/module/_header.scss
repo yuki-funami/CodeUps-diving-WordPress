@@ -35,6 +35,7 @@
   height: inherit;
 }
 .header__logo-link img {
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(168deg) brightness(106%) contrast(101%);
   width: rem(102);
   height: rem(38);
   @include mq("md") {

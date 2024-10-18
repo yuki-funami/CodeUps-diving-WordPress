@@ -1383,6 +1383,7 @@ textarea {
 }
 
 .footer__logo img {
+	filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(168deg) brightness(106%) contrast(101%);
 	height: inherit;
 	width: inherit;
 }
@@ -1500,6 +1501,7 @@ textarea {
 }
 
 .header__logo-link img {
+	filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(168deg) brightness(106%) contrast(101%);
 	height: 2.375rem;
 	width: 6.375rem;
 }

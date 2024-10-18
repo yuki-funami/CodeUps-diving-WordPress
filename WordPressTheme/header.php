@@ -47,7 +47,7 @@
       <div class="header__logo">
     <?php endif; ?>
         <a class="header__logo-link" href="<?php echo esc_url( home_url( '/' )); ?>">
-          <img src="<?php echo esc_url( get_theme_file_uri()); ?>/assets/images/svg/CodeUps_logo.svg" alt="CodeUps" width="133" height="50" loading="eager">
+          <img src="<?php echo esc_url( get_theme_file_uri()); ?>/assets/images/svg/CodeUps.svg" alt="CodeUps" width="133" height="50" loading="eager">
         </a>
     <?php if ($is_front_page): ?>
       </h1>
