@@ -171,19 +171,7 @@ a {
 }
 
 .layout-contact {
-	margin-top: 5rem;
-}
-
-.layout-contact--subpage {
 	margin-top: 6.625rem;
-}
-
-.layout-contact--blog {
-	margin-top: 6.5rem;
-}
-
-.layout-contact--sitemap {
-	margin-top: 4.375rem;
 }
 
 .layout-footer {
@@ -3181,6 +3169,8 @@ textarea.wpcf7-not-valid {
 
 .wpcf7-acceptance .wpcf7-list-item-label::before {
 	height: 1.375rem;
+	top: 0;
+	transform: translateY(0);
 	width: 1.375rem;
 }
 
@@ -3349,14 +3339,6 @@ html {
 
 .layout-contact {
 	margin-top: 8.75rem;
-}
-
-.layout-contact--subpage {
-	margin-top: 8.75rem;
-}
-
-.layout-contact--sitemap {
-	margin-top: 6.5rem;
 }
 
 .layout-footer {

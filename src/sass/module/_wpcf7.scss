@@ -112,6 +112,8 @@ textarea {
     }
 
     &::before {
+      top: 0;
+      transform: translateY(0);
       width: rem(22);
       height: rem(22);
     }
