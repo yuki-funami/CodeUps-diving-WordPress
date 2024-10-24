@@ -57,36 +57,61 @@
             while (have_posts()):
               the_post();
         ?>
+        <?php
+          // カスタムフィールドからデータを取得し、存在しない場合にはデフォルト値を返す関数
+          if ( !function_exists('get_field_value')) {
+            function get_field_value($field_array, $key, $default = ''): mixed {
+              return isset($field_array[$key]) ? $field_array[$key] : $default;
+            }
+          }
+
+          // 'voice_upper' フィールドを取得
+          $voice_upper = get_field('voice_upper');
+
+          // 'voice_upper' フィールドの各データを取得
+          $voice_upper_age = get_field_value($voice_upper, 'voice_upper_age');
+          $voice_upper_category = get_field_value($voice_upper, 'voice_upper_category');
+          $voice_upper_image = get_field_value($voice_upper, 'voice_upper_image');
+
+          // 'voice_text' フィールドを取得
+          $voice_text = get_field('voice_text');
+        ?>
           <article class="voice-cards__item voice-card">
             <div class="voice-card__inner">
               <div class="voice-card__upper">
                 <div class="voice-card__heading">
                   <div class="voice-card__meta">
-                  <?php $age = get_field('age'); ?>
-                    <div class="voice-card__gender"><?php echo esc_html($age); ?></div>
-                  <?php 
-                    $terms = get_the_terms($post->ID, 'voice-category');
-                      if ( !empty($terms)):
-                  ?>
-                    <div class="voice-card__category"><?php echo esc_html($terms[0]->name); ?></div>
-                  <?php endif; ?>
+                    <div class="voice-card__gender">
+                    <?php if ($voice_upper_age): ?>
+                      <?php echo esc_html($voice_upper_age); ?>
+                    <?php endif; ?>
+                    </div>
+                    <?php if ($voice_upper_category): ?>
+                    <div class="voice-card__category"><?php echo esc_html($voice_upper_category->name); ?></div>
+                    <?php endif; ?>
                   </div>
+                  <!-- /.voice-card__meta -->
                   <h2 class="voice-card__title"><?php the_title(); ?></h2>
                 </div>
+                <!-- /.voice-card__heading -->
                 <figure class="voice-card__image">
                   <picture>
-                  <?php if (has_post_thumbnail()): ?>
-                    <?php the_post_thumbnail('full'); ?>
+                  <?php if ($voice_upper_image): ?>
+                    <img src="<?php echo esc_url($voice_upper_image['url']); ?>" alt="<?php echo esc_attr($voice_upper_image['alt']); ?>" width="180" height="140" loading="lazy">
                   <?php else: ?>
                     <img src="<?php echo esc_url( get_theme_file_uri()); ?>/assets/images/common/no-image.png" alt="no image" width="180" height="140" loading="lazy">
                   <?php endif; ?>
                   </picture>
                 </figure>
               </div>
+              <!-- /.voice-card__upper -->
               <p class="voice-card__text">
-                <?php the_content(); ?>
+              <?php if ($voice_text): ?>
+                <?php echo nl2br( esc_textarea($voice_text)); ?>
+              <?php endif; ?>
               </p>
             </div>
+            <!-- /.voice-card__inner -->
           </article>
           <!-- /.voice-cards__item .voice-card -->
         <?php endwhile; endif; ?>

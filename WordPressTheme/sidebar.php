@@ -63,19 +63,37 @@
                   while ($the_query->have_posts()):
                     $the_query->the_post();
               ?>
+              <?php
+                // カスタムフィールドからデータを取得し、存在しない場合にはデフォルト値を返す関数
+                if ( !function_exists('get_field_value')) {
+                  function get_field_value($field_array, $key, $default = ''): mixed {
+                    return isset($field_array[$key]) ? $field_array[$key] : $default;
+                  }
+                }
+
+                // 'voice_upper' フィールドを取得
+                $voice_upper = get_field('voice_upper');
+
+                // 'voice_upper' フィールドの各データを取得
+                $voice_upper_age = get_field_value($voice_upper, 'voice_upper_age');
+                $voice_upper_image = get_field_value($voice_upper, 'voice_upper_image');
+              ?>
                 <div class="side-voice__card side-voice-card">
                   <figure class="side-voice-card__image">
                     <picture>
-                    <?php if (has_post_thumbnail()): ?>
-                      <?php the_post_thumbnail('full'); ?>
+                    <?php if ($voice_upper_image): ?>
+                      <img src="<?php echo esc_url($voice_upper_image['url']); ?>" alt="<?php echo esc_attr($voice_upper_image['alt']); ?>" width="180" height="140" loading="lazy">
                     <?php else: ?>
-                      <img src="<?php echo esc_url( get_theme_file_uri()); ?>/assets/images/common/no-image.png" alt="no image" width="294" height="218" loading="lazy">
+                      <img src="<?php echo esc_url( get_theme_file_uri()); ?>/assets/images/common/no-image.png" alt="no image" width="180" height="140" loading="lazy">
                     <?php endif; ?>
                     </picture>
                   </figure>
                   <div class="side-voice-card__content">
-                  <?php $age = get_field('age'); ?>
-                    <div class="side-voice-card__gender"><?php echo esc_html($age); ?></div>
+                    <div class="side-voice-card__gender">
+                    <?php if ($voice_upper_age): ?>
+                      <?php echo esc_html($voice_upper_age); ?>
+                    <?php endif; ?>
+                    </div>
                     <h3 class="side-voice-card__title"><?php the_title(); ?></h3>
                   </div>
                 </div>
@@ -114,31 +132,51 @@
                     while ($the_query->have_posts()):
                       $the_query->the_post();
                 ?>
+                <?php
+                  // カスタムフィールドからデータを取得し、存在しない場合にはデフォルト値を返す関数
+                  if ( !function_exists('get_field_value')) {
+                    function get_field_value($field_array, $key, $default = ''): mixed {
+                      return isset($field_array[$key]) ? $field_array[$key] : $default;
+                    }
+                  }
+
+                  // 'campaign_image' フィールドを取得
+                  $campaign_image = get_field('campaign_image');
+
+                  // 'campaign_price' フィールドを取得
+                  $campaign_price = get_field('campaign_price');
+                  
+                  // 'campaign_price' フィールドの各データを取得
+                  $campaign_price_before = get_field_value($campaign_price, 'campaign_price_before');
+                  $campaign_price_after = get_field_value($campaign_price, 'campaign_price_after');
+                ?>
                   <div class="side-campaign-cards__item campaign-card">
                     <figure class="campaign-card__image campaign-card__image--side">
                       <picture>
-                      <?php if (has_post_thumbnail()): ?>
-                        <?php the_post_thumbnail('full'); ?>
+                      <?php if ($campaign_image): ?>
+                        <img src="<?php echo esc_url($campaign_image['url']); ?>" alt="<?php echo esc_attr($campaign_image['alt']); ?>" width="520" height="347" loading="lazy">
                       <?php else: ?>
-                        <img src="<?php echo esc_url( get_theme_file_uri()); ?>/assets/images/common/no-image.png" alt="no image" width="294" height="188" loading="lazy">
+                        <img src="<?php echo esc_url( get_theme_file_uri()); ?>/assets/images/common/no-image.png" alt="no image" width="520" height="347" loading="lazy">
                       <?php endif; ?>
                       </picture>
                     </figure>
                     <div class="campaign-card__content campaign-card__content--side">
                       <div class="campaign-card__title campaign-card__title--side"><?php the_title(); ?></div>
                       <p class="campaign-card__text campaign-card__text--side">全部コミコミ(お一人様)</p>
+                      <?php if ($campaign_price): ?>
                       <div class="campaign-card__price campaign-card__price--side">
-                      <?php
-                        $original_price = get_field('original_price');
-                        $discount_price = get_field('discount_price');
-                      ?>
+                        <?php if ($campaign_price_before): ?>
                         <p class="campaign-card__original-price campaign-card__original-price--side">
-                          &yen;<?php echo number_format( esc_html($original_price)); ?>
+                          &yen;<?php echo number_format( esc_html($campaign_price_before)); ?>
                         </p>
+                        <?php endif; ?>
+                        <?php if ($campaign_price_after): ?>
                         <p class="campaign-card__discount-price campaign-card__discount-price--side">
-                          &yen;<?php echo number_format( esc_html($discount_price)); ?>
+                          &yen;<?php echo number_format( esc_html($campaign_price_after)); ?>
                         </p>
+                        <?php endif; ?>
                       </div>
+                      <?php endif; ?>
                     </div>
                   </div>
                   <!-- /.side-campaign-cards__item .campaign-card -->

@@ -81,7 +81,7 @@ jQuery(function ($) { // この中であればWordpressでも「$」が使用可
     },
     speed: 2000,
     autoplay: {
-      delay: 12000,
+      delay: 10000,
       disableOnInteraction: false,
       waitForTransition: false,
     },
@@ -91,10 +91,10 @@ jQuery(function ($) { // この中であればWordpressでも「$」が使用可
   new Swiper('.js-campaign-swiper', {
     loop: true,
     slidesPerView: 'auto',
-    speed: 2000,
+    speed: 700,
     spaceBetween: 24,
     autoplay: {
-      delay: 3000,
+      delay: 6000,
       disableOnInteraction: false,
       waitForTransition: false,
     },
@@ -248,16 +248,22 @@ jQuery(function ($) { // この中であればWordpressでも「$」が使用可
   # price
   ==========================*/
   $(document).ready(function () {
-    // ページ読み込み時にハッシュがあればスクロール
+    // ページがロードされた際に、URLにハッシュ(例: #license)があればスクロール
     scrollToHash();
     
     // リンクをクリックした際にスクロール
-    $('a[href*="#"]').on('click', function(e) {
-      const hash = this.hash;
-      if (hash) {
-        e.preventDefault();
-        scrollToHash(hash);
-        history.pushState(null, null, hash);
+    $('a[href*="#"]').on('click', function(e) { // href属性に '#' が含まれている全てのリンクを対象
+      const hash = this.hash; // クリックしたリンクのハッシュを取得
+      const currentPath = window.location.pathname; // 現在のページのパス(例: /sitemap )を取得
+      const targetPath = new URL(this.href).pathname; // クリックされたリンクのURLからパス(例: /price )を取得
+
+      // 同じページ内のリンクであれば、スムーズスクール
+      if (currentPath === targetPath) {
+        if (hash) {
+          e.preventDefault(); // リンククリック動作をキャンセル
+          scrollToHash(hash);
+          history.pushState(null, null, hash); // ブラウザのハッシュを更新
+        }
       }
     });
 

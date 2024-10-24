@@ -57,43 +57,73 @@
             while (have_posts()):
               the_post();
         ?>
+        <?php
+          // カスタムフィールドからデータを取得し、存在しない場合にはデフォルト値を返す関数
+          if ( !function_exists('get_field_value')) {
+            function get_field_value($field_array, $key, $default = ''): mixed {
+              return isset($field_array[$key]) ? $field_array[$key] : $default;
+            }
+          }
+
+          // 'campaign_image' フィールドを取得
+          $campaign_image = get_field('campaign_image');
+
+          // 'campaign_category' フィールドを取得
+          $campaign_category = get_field('campaign_category');
+
+          // 'campaign_price' フィールドを取得
+          $campaign_price = get_field('campaign_price');
+          
+          // 'campaign_price' フィールドの各データを取得
+          $campaign_price_before = get_field_value($campaign_price, 'campaign_price_before');
+          $campaign_price_after = get_field_value($campaign_price, 'campaign_price_after');
+
+          // 'campaign_text' フィールドを取得
+          $campaign_text = get_field('campaign_text');
+
+          // 'campaign_period' フィールドを取得
+          $campaign_period = get_field('campaign_period');
+        ?>
           <article class="archive-campaign-cards__card campaign-card">
             <figure class="campaign-card__image campaign-card__image--archive">
               <picture>
-              <?php if (has_post_thumbnail()): ?>
-                <?php the_post_thumbnail('full'); ?>
+              <?php if ($campaign_image): ?>
+                <img src="<?php echo esc_url($campaign_image['url']); ?>" alt="<?php echo esc_attr($campaign_image['alt']); ?>" width="520" height="347" loading="lazy">
+              <?php else: ?>
+                <img src="<?php echo esc_url( get_theme_file_uri()); ?>/assets/images/common/no-image.png" alt="no image" width="520" height="347" loading="lazy">
               <?php endif; ?>
               </picture>
             </figure>
             <div class="campaign-card__content campaign-card__content--archive">
-            <?php 
-              $terms = get_the_terms($post->ID, 'campaign-category');
-                if ( !empty($terms)):
-            ?>
-              <div class="campaign-card__category"><?php echo esc_html($terms[0]->name); ?></div>
-            <?php endif; ?>
+              <?php if ($campaign_category): ?>
+              <div class="campaign-card__category"><?php echo esc_html($campaign_category->name); ?></div>
+              <?php endif; ?>
               <h2 class="campaign-card__title campaign-card__title--archive"><?php the_title(); ?></h2>
               <p class="campaign-card__text campaign-card__text--archive">全部コミコミ(お一人様)</p>
+              <?php if ($campaign_price): ?>
               <div class="campaign-card__price campaign-card__price--archive">
-              <?php
-                $original_price = get_field('original_price');
-                $discount_price = get_field('discount_price');
-                $start_date = get_field('start_date');
-                $end_date = get_field('end_date');
-              ?>
+                <?php if ($campaign_price_before): ?>
                 <p class="campaign-card__original-price">
-                  &yen;<?php echo number_format( esc_html($original_price)); ?>
+                  &yen;<?php echo number_format( esc_html($campaign_price_before)); ?>
                 </p>
+                <?php endif; ?>
+                <?php if ($campaign_price_after): ?>
                 <p class="campaign-card__discount-price campaign-card__discount-price--archive">
-                  &yen;<?php echo number_format( esc_html($discount_price)); ?>
+                  &yen;<?php echo number_format( esc_html($campaign_price_after)); ?>
                 </p>
+                <?php endif; ?>
               </div>
+              <?php endif; ?>
               <div class="campaign-card__archive u-desktop">
                 <p class="campaign-card__archive-text">
-                  <?php the_content(); ?>
+                <?php if ($campaign_text): ?>
+                  <?php echo nl2br( esc_textarea($campaign_text)); ?>
+                <?php endif; ?>
                 </p>
                 <p class="campaign-card__archive-date">
-                  <?php echo esc_html($start_date.'-'.$end_date); ?>
+                <?php if ($campaign_period): ?>
+                  <?php echo esc_html($campaign_period); ?>
+                <?php endif; ?>
                 </p>
                 <a href="<?php echo esc_url( home_url( '/contact/' )); ?>" class="campaign-card__archive-link">ご予約・お問い合わせはコチラ</a>
                 <div class="campaign-card__archive-button">
@@ -103,7 +133,9 @@
                   </a>
                 </div>
               </div>
+              <!-- /.campaign-card__archive -->
             </div>
+            <!-- /.campaign-card__content .campaign-card__content--archive -->
           </article>
           <!-- /.archive-campaign-cards__card .campaign-card -->
         <?php endwhile; endif; ?>

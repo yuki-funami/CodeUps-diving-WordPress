@@ -170,7 +170,40 @@ function change_posts_per_page($query) {
 add_action('pre_get_posts', 'change_posts_per_page');
 
 /*==========================
-# WordPress管理画面のエディタ等を非表示
+# カスタム投稿の詳細ページは404
+==========================*/
+function my_force_404() {
+  if (is_singular(['campaign', 'voice'])) {
+    global $wp_query;
+    $wp_query->set_404();
+    status_header(404);
+    nocache_headers();
+    include(get_template_directory() . '/404.php');
+    exit;
+  }
+}
+
+add_action('template_redirect', 'my_force_404');
+
+// 特定のページへリダイレクトしたい場合はこちらを使用
+// function my_redirect() {
+//   if (is_singular('campaign') || is_tax('campaign-category') || is_date()) {
+//     $url = esc_url( home_url( '/campaign/' ));
+//     wp_safe_redirect($url, 302); // 302リダイレクト、本番環境は301リダイレクトに修正
+//     exit;
+//   }
+
+//   if (is_singular('voice') || is_tax('voice-category') || is_date()) {
+//     $url = esc_url( home_url( '/voice/' ));
+//     wp_safe_redirect($url, 302); // 302リダイレクト、本番環境は301リダイレクトに修正
+//     exit;
+//   }
+// }
+
+// add_action('template_redirect', 'my_redirect');
+
+/*==========================
+# 編集画面のエディタや不要な項目を非表示
 ==========================*/
 function disable_editor_for_pages($use_block_editor, $post) {
   if ($post->post_type === 'page') {
@@ -179,7 +212,6 @@ function disable_editor_for_pages($use_block_editor, $post) {
         'about-us',
         'information',
         'blog',
-        'voice',
         'price',
         'faq',
         'contact',
@@ -207,6 +239,27 @@ function disable_editor_for_pages($use_block_editor, $post) {
 }
 
 add_filter('use_block_editor_for_post', 'disable_editor_for_pages', 10, 2);
+
+function disable_editor_for_posts() {
+  // 通常投稿 'blog' の設定
+  remove_post_type_support('post', 'author');
+  remove_post_type_support('post', 'excerpt');
+  remove_post_type_support('post', 'comments');
+  unregister_taxonomy_for_object_type('category', 'post');
+  unregister_taxonomy_for_object_type('post_tag', 'post');
+
+  // カスタム投稿 'campaign' の設定
+  remove_post_type_support('campaign', 'editor');
+  remove_post_type_support('campaign', 'thumbnail');
+  unregister_taxonomy_for_object_type('campaign-category', 'campaign');
+
+  // カスタム投稿 'voice' の設定
+  remove_post_type_support('voice', 'editor');
+  remove_post_type_support('voice', 'thumbnail');
+  unregister_taxonomy_for_object_type('voice-category', 'voice');
+}
+
+add_action('init', 'disable_editor_for_posts');
 
 /*==========================
 # ブロックエディタにCSSを適用させる場合
@@ -249,3 +302,17 @@ function add_origin_thanks_page() {
 }
 
 add_action('wp_footer', 'add_origin_thanks_page');
+
+/*==========================
+# クラシックエディタ (ブロックエディタを無効化)
+==========================*/
+// add_filter('use_block_editor_for_post', '__return_false');
+
+/*==========================
+# 管理画面のメニューを非表示 (コメントを非表示)
+==========================*/
+function disable_menus() {
+  remove_menu_page('edit-comments.php');
+}
+
+add_action('admin_menu', 'disable_menus');
