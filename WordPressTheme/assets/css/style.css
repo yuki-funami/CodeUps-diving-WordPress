@@ -658,8 +658,10 @@ body.no-scroll {
 }
 
 body.is-scroll-lock {
+	left: 0;
 	overflow-y: scroll;
 	position: fixed;
+	width: 100%;
 }
 
 body.is-fixed {

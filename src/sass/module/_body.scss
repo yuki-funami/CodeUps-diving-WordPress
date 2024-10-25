@@ -19,7 +19,9 @@ body.no-scroll {
 //////////////////
 body.is-scroll-lock {
   position: fixed;
+  left: 0;
   overflow-y: scroll; // スクロールバーを表示させたままにする
+  width: 100%;
 }
 
 //////////////////
