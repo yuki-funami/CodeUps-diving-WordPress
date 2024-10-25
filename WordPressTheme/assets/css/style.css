@@ -657,6 +657,11 @@ body.no-scroll {
 	overflow: hidden;
 }
 
+body.is-scroll-lock {
+	overflow-y: scroll;
+	position: fixed;
+}
+
 body.is-fixed {
 	height: 100%;
 	left: 0;
@@ -1721,7 +1726,7 @@ textarea {
 .mv {
 	height: 100vh;
 	position: relative;
-	width: 100vw;
+	width: 100%;
 }
 
 .mv__image {
@@ -2740,7 +2745,7 @@ table {
 .sub-mv {
 	height: 28.75rem;
 	position: relative;
-	width: 100vw;
+	width: 100%;
 }
 
 .sub-mv__image {

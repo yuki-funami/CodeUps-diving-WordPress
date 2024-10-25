@@ -180,19 +180,23 @@ jQuery(function ($) { // この中であればWordpressでも「$」が使用可
   # modal
   ==========================*/
   const modalBackground = $('.modal-background');
+  let bodyOffsetY;
   // モーダル表示
   $('.js-modal picture img').on('click', function () {
-    // 画像の HTML(<img>タグ全体)を、modal__background内にコピー
-    modalBackground.html($(this).prop('outerHTML'));
+    bodyOffsetY = $(window).scrollTop();
+    modalBackground.html($(this).prop('outerHTML')); // 画像の HTML(<img>タグ全体)を、modal__background内にコピー
     modalBackground.fadeIn(200);
-    $('html, body').css('overflow', 'hidden');
+    $('body').css('top', -bodyOffsetY + 'px'); // top に現在のスクロール量を指定
+    $('body').addClass('is-scroll-lock'); // body を固定
     return false;
   });
 
   // モーダル非表示
   modalBackground.on('click', function () {
     modalBackground.fadeOut(200);
-    $('html, body').removeAttr('style');
+    $('body').removeClass('is-scroll-lock'); // body の固定を解除
+    $('body').removeAttr('style'); // top の指定を除去
+    $(window).scrollTop(bodyOffsetY); // 元のスクロール位置に戻す
     return false;
   });
 

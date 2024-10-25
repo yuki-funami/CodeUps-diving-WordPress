@@ -2,7 +2,7 @@
 
 .sub-mv {
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: rem(460);
   @include mq("md") {
     height: rem(548);
