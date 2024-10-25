@@ -1133,15 +1133,11 @@ textarea {
 }
 
 .contact-form__submit-button {
-	align-items: center;
 	background-color: #408f95;
 	border: 1px solid #408f95;
-	cursor: pointer;
-	display: inline-flex;
-	gap: 0.75rem;
-	justify-content: center;
+	display: inline-block;
+	height: 3.375rem;
 	margin-left: -0.1875rem;
-	padding: 0.9375rem;
 	position: relative;
 	width: 12.625rem;
 	z-index: 1;
@@ -1173,12 +1169,21 @@ textarea {
 	z-index: -1;
 }
 
-.contact-form__submit-button span:last-child {
+.contact-form__submit-arrow {
+	height: inherit;
+	position: relative;
+	width: inherit;
+}
+
+.contact-form__submit-arrow::after {
 	border-bottom: 1px solid #fff;
 	border-right: 2px solid #fff;
-	display: block;
+	content: "";
 	height: 0.4375rem;
+	left: 6.125rem;
 	margin-top: -0.1875rem;
+	position: absolute;
+	top: 1.5rem;
 	transform: skew(50deg);
 	width: 2.6875rem;
 }
@@ -3198,9 +3203,11 @@ textarea.wpcf7-not-valid {
 	font-family: inherit;
 	font-size: 0.875rem;
 	font-weight: 400;
+	height: 100%;
 	line-height: 1.5714285714;
-	padding: 0;
+	padding: 0 3.75rem 0.3125rem 0;
 	text-transform: capitalize;
+	width: 100%;
 }
 
 .wpcf7-spinner {
@@ -3246,7 +3253,7 @@ textarea.wpcf7-not-valid {
 	color: #408f95;
 }
 
-.contact-form__submit-button:hover span:last-child {
+.contact-form__submit-arrow:hover::after {
 	border-color: #408f95;
 }
 

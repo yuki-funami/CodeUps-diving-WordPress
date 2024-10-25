@@ -141,17 +141,14 @@ textarea {
     margin-top: rem(41);
   }
 }
+// Contact Form 7 のsubmit を使用するため共通パーツは使用しない
 .contact-form__submit-button {
-  cursor: pointer;
   position: relative;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: rem(12);
+  display: inline-block;
   width: rem(202);
+  height: rem(54);
   background-color: $accent;
   border: 1px solid $accent;
-  padding: rem(15);
   margin-left: rem(-3);
   z-index: 1;
 }
@@ -179,8 +176,16 @@ textarea {
   transition: 0.2s cubic-bezier(0.44, 0, 0.5, 1);
   z-index: -1;
 }
-.contact-form__submit-button span:last-child {
-  display: block;
+.contact-form__submit-arrow {
+  position: relative;
+  width: inherit;
+  height: inherit;
+}
+.contact-form__submit-arrow::after {
+  content: "";
+  position: absolute;
+  top: rem(24);
+  left: rem(98);
   width: rem(43);
   height: rem(7);
   border-bottom: 1px solid $white;
@@ -197,7 +202,7 @@ textarea {
       color: $accent;
     }
   }
-  .contact-form__submit-button:hover span:last-child {
+  .contact-form__submit-arrow:hover::after {
     border-color: $accent;
   }
 }

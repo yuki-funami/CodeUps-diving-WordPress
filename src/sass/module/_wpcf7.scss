@@ -154,7 +154,9 @@ textarea {
   line-height: calc(22 / 14);
   font-family: inherit;
   text-transform: capitalize;
-  padding: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 rem(60) rem(5) 0;
 }
 // Contact Form 7で自動挿入されるローディング画像を非表示
 .wpcf7-spinner {
