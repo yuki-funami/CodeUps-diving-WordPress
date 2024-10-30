@@ -127,7 +127,8 @@ jQuery(function ($) { // この中であればWordpressでも「$」が使用可
 
   toTop.click(function () {
     const speed = 350;
-    $('body, html').animate({ scrollTop: 0 }, speed, 'swing');
+    const easing = 'swing';
+    $('body, html').animate({ scrollTop: 0 }, speed, easing);
     return false;
   });
 

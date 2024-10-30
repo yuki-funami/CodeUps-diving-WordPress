@@ -86,6 +86,9 @@
             <li class="nav__item">
               <a href="<?php echo esc_url( home_url( '/contact/' )); ?>">お問い合わせ</a>
             </li>
+            <li class="nav__item">
+              <a href="<?php echo esc_url( home_url( '/sitemap/' )); ?>">サイトマップ</a>
+            </li>
           </ul>
         </div>
         <!-- /.page-sitemap__nav .nav -->

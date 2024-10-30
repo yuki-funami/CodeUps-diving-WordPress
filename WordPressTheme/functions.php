@@ -203,6 +203,129 @@ add_action('template_redirect', 'my_force_404');
 // add_action('template_redirect', 'my_redirect');
 
 /*==========================
+# 人気記事
+==========================*/
+// 閲覧数をカウント
+function setPostViews($postID) {
+  $count_key = 'post_views_count'; // カスタムフィールドキー
+  $count = get_post_meta($postID, $count_key, true); // 閲覧数を取得
+
+  if ($count == '') {
+    $count = 0;
+    delete_post_meta($postID, $count_key); // メタ情報を削除
+    add_post_meta($postID, $count_key, '0'); // 閲覧数を0に初期化
+  } else {
+    $count++; // 閲覧数をインクリメント
+    update_post_meta($postID, $count_key, $count); // 閲覧数を更新
+  }
+}
+
+// 閲覧数を取得
+function getPostViews($postID) {
+  $count_key = 'post_views_count'; // カスタムフィールドキー
+  $count = get_post_meta($postID, $count_key, true); // 閲覧数を取得
+
+  if ($count == '') {
+    delete_post_meta($postID, $count_key); // メタ情報を削除
+    add_post_meta($postID, $count_key, '0'); // 閲覧数を0に初期化
+    return '0 view'; // '0 view'を返す
+  }
+  return $count.' view'; // カウント済みの閲覧数を返す
+}
+
+remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
+
+// クローラーはカウントしない
+function is_bot() {
+  $user_agent = $_SERVER['HTTP_USER_AGENT'];
+
+  $bots = [
+    'Googlebot',
+		'Yahoo! Slurp',
+		'Mediapartners-Google',
+		'msnbot',
+		'bingbot',
+		'MJ12bot',
+		'Ezooms',
+		'pirst; MSIE 8.0;',
+		'Google Web Preview',
+		'ia_archiver',
+		'Sogou web spider',
+		'Googlebot-Mobile',
+		'AhrefsBot',
+		'YandexBot',
+		'Purebot',
+		'Baiduspider',
+		'UnwindFetchor',
+		'TweetmemeBot',
+		'MetaURI',
+		'PaperLiBot',
+		'Showyoubot',
+		'JS-Kit',
+		'PostRank',
+		'Crowsnest',
+		'PycURL',
+		'bitlybot',
+		'Hatena',
+		'facebookexternalhit',
+		'NINJA bot',
+		'YahooCacheSystem',
+		'NHN Corp.',
+		'Steeler',
+		'DoCoMo',
+  ];
+
+  foreach ($bots as $bot) {
+    // ユーザーエージェント文字列を検索し、ボットが含まれているかを確認
+    if (stripos($user_agent, $bot) !== false) {
+      return true;
+    }
+  }
+  return false;
+}
+
+// 管理画面に閲覧数の項目追加
+function count_add_column($columns) {
+  $columns['views'] = '閲覧数';
+  return $columns;
+}
+
+add_filter('manage_posts_columns', 'count_add_column');
+
+// 管理画面にPV数を表示
+function count_add_column_data($column, $post_id) {
+  switch($column) {
+    case 'views':
+      echo getPostViews($post_id);
+      break;
+  }
+}
+
+add_action('manage_posts_custom_column', 'count_add_column_data', 10, 2);
+
+// 閲覧数項目を並び替え要素にする
+function column_views_sortable($columns) {
+  $columns['views'] = 'views_sort';
+  return $columns;
+}
+
+add_filter('manage_edit-post_sortable_columns', 'column_views_sortable');
+
+// 閲覧数で並び替えを実行
+function my_add_sort_by_meta($query) {
+  if ($query->is_main_query() && ($orderby = $query->get('orderby'))) {
+    switch($orderby) {
+      case 'views_sort':
+        $query->set('meta_key', 'post_views_count');
+        $query->set('orderby', 'meta_value_num');
+        break;
+    }
+  }
+}
+
+add_action('pre_get_posts', 'my_add_sort_by_meta', 1);
+
+/*==========================
 # 編集画面のエディタや不要な項目を非表示
 ==========================*/
 function disable_editor_for_pages($use_block_editor, $post) {
@@ -251,12 +374,10 @@ function disable_editor_for_posts() {
   // カスタム投稿 'campaign' の設定
   remove_post_type_support('campaign', 'editor');
   remove_post_type_support('campaign', 'thumbnail');
-  unregister_taxonomy_for_object_type('campaign-category', 'campaign');
 
   // カスタム投稿 'voice' の設定
   remove_post_type_support('voice', 'editor');
   remove_post_type_support('voice', 'thumbnail');
-  unregister_taxonomy_for_object_type('voice-category', 'voice');
 }
 
 add_action('init', 'disable_editor_for_posts');

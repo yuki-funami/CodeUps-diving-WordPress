@@ -23,6 +23,12 @@
       <div class="archive-blog__inner inner">
         <div class="archive-blog__body">
           <div class="archive-blog__main">
+          <?php 
+            // 未ログインユーザーで、且つボットでない場合
+            if ( !is_user_logged_in() && !is_bot()) {
+              setPostViews( get_the_ID());
+            }
+          ?>
           <?php
             if (have_posts()):
               while (have_posts()):

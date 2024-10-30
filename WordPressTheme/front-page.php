@@ -251,7 +251,10 @@
                 <time datetime="<?php the_time('C'); ?>" class="blog-card__time"><?php the_time('Y.m/d'); ?></time>
                 <h3 class="blog-card__title"><?php the_title(); ?></h3>
                 <p class="blog-card__text">
-                  <?php echo esc_html( wp_trim_words(get_the_content(), 85, '…')); ?>
+                  <?php 
+                    $content = mb_substr( strip_tags(get_the_content()), 0, 86);
+                    echo esc_html($content);
+                  ?>
                 </p>
               </div>
             </div>
@@ -347,7 +350,10 @@
               <!-- /.voice-card__upper -->
               <p class="voice-card__text">
               <?php if ($voice_text): ?>
-                <?php echo nl2br( esc_textarea($voice_text)); ?>
+                <?php 
+                  $content = mb_substr( strip_tags($voice_text, '<br>'), 0, 173);
+                  echo nl2br( esc_textarea($content));
+                ?>
               <?php endif; ?>
               </p>
             </div>
@@ -426,7 +432,7 @@
               <?php foreach ($items as $item): ?>
               <div class="price-menu__course">
                 <dt><?php echo esc_html($item[$courses[$key][0]]); ?></dt>
-                <dd><?php echo esc_html($item[$courses[$key][1]]); ?></dd>
+                <dd><?php echo esc_html('¥' .number_format($item[$courses[$key][1]])); ?></dd>
               </div>
               <?php endforeach; ?>
             </dl>

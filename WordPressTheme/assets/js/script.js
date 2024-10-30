@@ -121,9 +121,10 @@ jQuery(function ($) {
   });
   toTop.click(function () {
     var speed = 350;
+    var easing = 'swing';
     $('body, html').animate({
       scrollTop: 0
-    }, speed, 'swing');
+    }, speed, easing);
     return false;
   });
 

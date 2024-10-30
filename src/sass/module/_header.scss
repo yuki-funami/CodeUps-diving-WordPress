@@ -1,7 +1,7 @@
 @use "global" as *;
 
 .header {
-  width: 100vw;
+  width: 100dvw;
   height: rem(80);
   background-color: rgba($color: $black, $alpha: 0.68);
   transition: background-color 0.35s;

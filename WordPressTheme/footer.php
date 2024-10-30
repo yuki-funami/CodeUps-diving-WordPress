@@ -1,5 +1,11 @@
   <?php if ( !is_page( 'contact' ) && !is_page( 'thanks' ) && !is_404() ): ?>
-    <section class="contact layout-contact">
+    <section class="contact layout-contact
+      <?php 
+        if (is_front_page()) {
+          echo 'layout-contact--front';
+        } 
+      ?>
+    ">
       <div class="contact__inner inner">
         <div class="contact__body">
           <div class="contact__left-body contact-left">
@@ -145,6 +151,9 @@
           </li>
           <li class="nav__item">
             <a href="<?php echo esc_url( home_url( '/contact/' )); ?>">お問い合わせ</a>
+          </li>
+          <li class="nav__item">
+            <a href="<?php echo esc_url( home_url( '/sitemap/' )); ?>">サイトマップ</a>
           </li>
         </ul>
       </div>

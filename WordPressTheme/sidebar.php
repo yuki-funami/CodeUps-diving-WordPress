@@ -1,4 +1,4 @@
-          <div class="archive-blog__side side">
+          <aside class="archive-blog__side side">
             <section class="side__blog side-blog">
               <div class="side-blog__inner inner">
                 <div class="side-blog__header side-section-header">
@@ -10,6 +10,8 @@
                     'post_type' => 'post', // 投稿タイプのスラッグ(通常投稿なので 'post')
                     'posts_per_page' => 3, // 表示件数
                     'no_found_rows' => true, // ページングを無効化
+                    'orderby' => 'meta_value_num', // カスタムフィールドの値で並び替え
+                    'meta_key' => 'post_views_count', // カスタムフィールドに閲覧数を指定
                   ];
 
                   $the_query = new WP_Query($args);
@@ -55,7 +57,6 @@
                   'post_type' => 'voice', // 投稿タイプのスラッグ
                   'posts_per_page' => 1, // 表示件数
                   'no_found_rows' => true, // ページングを無効化
-                  'orderby' => 'rand', // ランダムで並び替え
                 ];
 
                 $the_query = new WP_Query($args);
@@ -124,7 +125,6 @@
                     'post_type' => 'campaign', // 投稿タイプのスラッグ
                     'posts_per_page' => 2, // 表示件数
                     'no_found_rows' => true, // ページングを無効化
-                    'orderby' => 'rand', // ランダムで並び替え
                   ];
 
                   $the_query = new WP_Query($args);
@@ -244,5 +244,5 @@
             </section>
             <!-- /.side__archive .side-archive -->
 
-          </div>
+          </aside>
           <!-- /.archive-blog__side .side -->

@@ -61,7 +61,7 @@
             <?php foreach ($items as $item): ?>
               <tr>
                 <th><?php echo esc_html($item[$courses[$key][0]]); ?></th>
-                <td><?php echo esc_html($item[$courses[$key][1]]); ?></td>
+                <td><?php echo esc_html('¥' .number_format($item[$courses[$key][1]])); ?></td>
               </tr>
             <?php endforeach; ?>
             </tbody>
