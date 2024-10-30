@@ -294,7 +294,7 @@ add_filter('manage_posts_columns', 'count_add_column');
 
 // 管理画面にPV数を表示
 function count_add_column_data($column, $post_id) {
-  switch($column) {
+  switch ($column) {
     case 'views':
       echo getPostViews($post_id);
       break;
@@ -314,7 +314,7 @@ add_filter('manage_edit-post_sortable_columns', 'column_views_sortable');
 // 閲覧数で並び替えを実行
 function my_add_sort_by_meta($query) {
   if ($query->is_main_query() && ($orderby = $query->get('orderby'))) {
-    switch($orderby) {
+    switch ($orderby) {
       case 'views_sort':
         $query->set('meta_key', 'post_views_count');
         $query->set('orderby', 'meta_value_num');
@@ -404,6 +404,33 @@ function wpcf7_autop_return_false() {
 }
 
 add_filter('wpcf7_autop_or_not', 'wpcf7_autop_return_false');
+
+/*==========================
+# Contact Form 7のセレクトボックスを動的
+==========================*/
+function add_select_menu($scanned_tag, $replace) {
+  if ( !empty($scanned_tag) && $scanned_tag['name'] === 'menu_name') {
+    global $post;
+
+    $args = [
+      'post_type' => 'campaign',
+      'posts_per_page' => -1,
+      'post_status' => 'publish',
+    ];
+
+    $custom_posts = get_posts($args);
+    if ($custom_posts) {
+      foreach ($custom_posts as $post) {
+        $title = get_the_title($post->ID);
+        $scanned_tag['values'][] = $title;
+        $scanned_tag['labels'][] = $title;
+      }
+    }
+  }
+  return $scanned_tag;
+}
+
+add_filter('wpcf7_form_tag', 'add_select_menu', 11, 2);
 
 /*==========================
 # Contact Form 7サンクスページへの遷移設定
