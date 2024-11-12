@@ -48,6 +48,15 @@
     </section>
     <!-- /.page-about-us -->
 
+    <?php 
+      $images = SCF::get('gallery_images');
+      // 配列内に画像が存在するかをチェック
+      $filtered_images = array_filter($images, function($image) {
+        return !empty($image['gallery']);
+      });
+      
+      if ( !empty($filtered_images)):
+    ?>
     <section class="page-gallery layout-page-gallery fish fish--gallery">
       <div class="page-gallery__inner inner">
         <div class="page-gallery__header section-header">
@@ -57,19 +66,17 @@
         <!-- /.section-header -->
         <div class="page-gallery__content">
           <div class="page-gallery__images js-modal">
-          <!-- Smart Custom Fieldsで実装 -->
-          <?php 
-            $images = SCF::get('gallery_images');
-            if ( !empty($images)):
-              foreach ($images as $image):
+            <!-- Smart Custom Fieldsで実装 -->
+            <?php 
+              foreach ($filtered_images as $image):
                 $id = $image['gallery'];
                 $alt = get_post_meta($id, '_wp_attachment_image_alt', true);
                 $src = wp_get_attachment_image_src($id, 'full');
-          ?>
+            ?>
             <picture>
               <img src="<?php echo esc_url($src[0]); ?>" alt="<?php echo esc_attr($alt); ?>" width="<?php echo esc_attr($src[1]); ?>" height="<?php echo esc_attr($src[2]); ?>" loading="lazy">
             </picture>
-          <?php endforeach; endif; ?>
+            <?php endforeach; ?>
           </div>
         </div>
       </div>
@@ -77,5 +84,6 @@
       <div class="page-gallery__modal modal-background"></div>
     </section>
     <!-- /.page-gallery -->
+    <?php endif; ?>
 
 <?php get_footer(); ?>

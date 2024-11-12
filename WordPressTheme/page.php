@@ -12,19 +12,24 @@
         </picture>
       </div>
       <div class="sub-mv__content">
-      <!-- h1タイトルの条件分岐 -->
-      <?php if (is_page('privacy-policy')): ?>
+        <!-- h1タイトルの条件分岐 -->
+        <?php if (is_page('privacy-policy')): ?>
         <h1 class="sub-mv__title" id="formTitle">privacy&nbsp;policy</h1>
-      <?php endif; ?>
-      <?php if (is_page('terms-of-service')): ?>
+        <?php endif; ?>
+        <?php if (is_page('terms-of-service')): ?>
         <h1 class="sub-mv__title" id="formTitle">terms&nbsp;<span class="sub-mv__title--terms">of&nbsp;</span>service</h1>
-      <?php endif; ?>
+        <?php endif; ?>
       </div>
     </div>
 
     <!-- パンくず -->
     <?php get_template_part('parts/breadcrumb'); ?>
 
+    <?php
+      if (have_posts()):
+        while (have_posts()):
+          the_post();
+    ?>
     <section class="page-terms layout-page-terms fish fish--terms">
       <div class="page-terms__inner inner">
         <div class="page-terms__container terms">
@@ -38,5 +43,6 @@
       <!-- /.page-terms__inner .inner -->
     </section>
     <!-- /.page-terms -->
+    <?php endwhile; endif; ?>
 
 <?php get_footer(); ?>

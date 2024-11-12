@@ -291,7 +291,11 @@ jQuery(function ($) {
   /*==========================
   # sidebar
   ==========================*/
-  $('.side-archive-list__year').on('click', function () {
+  $('.side-archive-list__year').on('click', function (e) {
+    if ($(e.target).is('a')) {
+      e.stopPropagation();
+      return;
+    }
     $(this).toggleClass('is-open');
     $(this).children('.side-archive-list__child').slideToggle();
   });

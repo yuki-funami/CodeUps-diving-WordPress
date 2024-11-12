@@ -23,28 +23,28 @@
       <div class="archive-blog__inner inner">
         <div class="archive-blog__body">
           <div class="archive-blog__main">
-          <?php 
-            // 未ログインユーザーで、且つボットでない場合
-            if ( !is_user_logged_in() && !is_bot()) {
-              setPostViews( get_the_ID());
-            }
-          ?>
-          <?php
-            if (have_posts()):
-              while (have_posts()):
-                the_post();
-          ?>
+            <?php 
+              // 未ログインユーザーで、且つボットでない場合
+              if ( !is_user_logged_in() && !is_bot()) {
+                setPostViews( get_the_ID());
+              }
+            ?>
+            <?php
+              if (have_posts()):
+                while (have_posts()):
+                  the_post();
+            ?>
             <article class="archive-blog__article blog-article">
               <time datetime="<?php the_time('C'); ?>" class="blog-article__time"><?php the_time('Y.m/d'); ?></time>
               <div class="blog-article__title">
                 <h1><?php the_title(); ?></h1>
               </div>
-            <!-- アイキャッチ画像があれば表示する -->
-            <?php if (has_post_thumbnail()): ?>
+              <!-- アイキャッチ画像があれば表示する -->
+              <?php if (has_post_thumbnail()): ?>
               <figure class="blog-article__thumbnail">
                 <?php the_post_thumbnail('full'); ?>
               </figure>
-            <?php endif; ?>
+              <?php endif; ?>
               <div class="blog-article__content">
                 <?php the_content(); ?>
               </div>
@@ -52,24 +52,27 @@
             <!-- /.single-blog__article .blog-article -->
             <div class="archive-blog__page-navigation archive-blog__page-navigation--single">
               <div class="wp-pagenavi wp-pagenavi--single">
-              <?php 
-                $prev = get_previous_post();
-                $next = get_next_post();
-              ?>
-              <?php if ($prev): ?>
+                <?php 
+                  $prev = get_previous_post();
+                  $next = get_next_post();
+                ?>
+                <?php if ($prev): ?>
                 <a class="previouspostslink" rel="prev" href="<?php echo esc_url( get_permalink($prev->ID)); ?>">&nbsp;</a>
-              <?php endif; ?>
-              <?php if ($next): ?>
+                <?php endif; ?>
+                <?php if ($next): ?>
                 <a class="nextpostslink" rel="next" href="<?php echo esc_url( get_permalink($next->ID)); ?>">&nbsp;</a>
-              <?php endif; ?>
+                <?php endif; ?>
               </div>
             </div>
             <!-- /.archive-blog__page-navigation -->
-          <?php endwhile; endif; ?>
+            <?php endwhile; endif; ?>
           </div>
           <!-- /.archive-blog__main -->
           
-          <?php get_sidebar(); ?>
+          <div class="archive-blog__side">
+            <?php get_sidebar(); ?>
+          </div>
+          <!-- /.archive-blog__side -->
 
         </div>
         <!-- /.archive-blog__body -->

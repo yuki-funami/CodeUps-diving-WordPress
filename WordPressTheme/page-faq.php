@@ -19,17 +19,25 @@
     <!-- パンくず -->
     <?php get_template_part('parts/breadcrumb'); ?>
 
+    <?php 
+      $faqs = SCF::get('faqs');
+
+      // FAQs配列から、質問と回答が空でないもののみを抽出する
+      $filtered_faqs = array_filter($faqs, function($faq) {
+        return !empty($faq['question']) && !empty($faq['answer']);
+      });
+
+      if ( !empty($filtered_faqs)):
+    ?>
     <section class="page-faq layout-page-faq fish">
       <div class="page-faq__inner inner">
         <div class="page-faq__items page-faq-items">
-        <!-- Smart Custom Fieldsで実装 -->
-        <?php 
-          $faqs = SCF::get('faqs');
-          if ( !empty($faqs)):
-            foreach ($faqs as $faq):
+          <!-- Smart Custom Fieldsで実装 -->
+          <?php 
+            foreach ($filtered_faqs as $faq):
               $question = $faq['question'];
               $answer = $faq['answer'];
-        ?>
+          ?>
           <details class="page-faq-items__item accordion js-details is-opened" open>
             <summary class="accordion__question js-summary">
               <span class="accordion__question-text-box">
@@ -41,12 +49,13 @@
               <p class="accordion__answer-text"><?php echo nl2br( esc_html($answer)); ?></p>
             </div>
           </details>
-        <?php endforeach; endif; ?>
+          <?php endforeach; ?>
         </div>
         <!-- /.page-faq__items .page-faq-items -->
       </div>
       <!-- /.page-faq__inner .inner -->
     </section>
     <!-- /.page-faq -->
+    <?php endif; ?>
 
 <?php get_footer(); ?>

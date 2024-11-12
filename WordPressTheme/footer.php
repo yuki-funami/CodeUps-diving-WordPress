@@ -1,11 +1,5 @@
-  <?php if ( !is_page( 'contact' ) && !is_page( 'thanks' ) && !is_404() ): ?>
-    <section class="contact layout-contact
-      <?php 
-        if (is_front_page()) {
-          echo 'layout-contact--front';
-        } 
-      ?>
-    ">
+    <?php if ( !is_page( 'contact' ) && !is_page( 'contact/thanks' ) && !is_404() ): ?>
+    <section class="contact layout-contact <?php echo is_front_page() ? 'layout-contact--front' : ''; ?>">
       <div class="contact__inner inner">
         <div class="contact__body">
           <div class="contact__left-body contact-left">
@@ -50,21 +44,11 @@
       <!-- /.contact__inner .inner -->
     </section>
     <!-- /.contact -->
-  <?php endif; ?>
+    <?php endif; ?>
   </main>
   <!-- /.main -->
 
-  <footer class="footer layout-footer
-    <?php 
-      if (is_404()) {
-        echo 'layout-footer--404';
-      } elseif (is_page( 'contact' )) {
-        echo 'layout-footer--contact';
-      } elseif (is_page( 'contact/thanks' )) {
-        echo 'layout-footer--thanks';
-      }
-    ?>
-  ">
+  <footer class="footer layout-footer <?php echo is_404() ? 'layout-footer--404' : (is_page( 'contact' ) ? 'layout-footer--contact' : (is_page( 'contact/thanks' ) ? 'layout-footer--thanks' : '')); ?>">
     <div class="footer__inner inner">
       <div class="footer__upper">
         <figure class="footer__logo">

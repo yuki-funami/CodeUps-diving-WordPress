@@ -19,35 +19,46 @@
     <!-- パンくず -->
     <?php get_template_part('parts/breadcrumb'); ?>
 
+    <?php 
+      $data = [
+        'license' => SCF::get('license'),
+        'experience' => SCF::get('experience'),
+        'fun' => SCF::get('fun'),
+        'special' => SCF::get('special')
+      ];
+
+      // すべてのカスタムフィールドが空かどうかを確認
+      $has_content = false;
+      foreach ($data as $items) {
+        if ( !empty(array_filter($items))) {
+          $has_content = true;
+          break;
+        }
+      }
+
+      if ($has_content):
+    ?>
     <section class="page-price layout-page-price fish">
       <div class="page-price__inner inner">
         <div class="page-price__content page-price-tables">
-        <!-- Smart Custom Fieldsで実装 -->
-        <?php 
-          $data = [
-            'license' => SCF::get('license'),
-            'experience' => SCF::get('experience'),
-            'fun' => SCF::get('fun'),
-            'special' => SCF::get('special')
-          ];
+          <!-- Smart Custom Fieldsで実装 -->
+          <?php 
+            $labels = [
+              'license' => 'ライセンス講習',
+              'experience' => '体験ダイビング',
+              'fun' => 'ファンダイビング',
+              'special' => 'スペシャルダイビング'
+            ];
 
-          $labels = [
-            'license' => 'ライセンス講習',
-            'experience' => '体験ダイビング',
-            'fun' => 'ファンダイビング',
-            'special' => 'スペシャルダイビング'
-          ];
+            $courses = [
+              'license' => ['course1', 'price1'],
+              'experience' => ['course2', 'price2'],
+              'fun' => ['course3', 'price3'],
+              'special' => ['course4', 'price4']
+            ];
 
-          $courses = [
-            'license' => ['course1', 'price1'],
-            'experience' => ['course2', 'price2'],
-            'fun' => ['course3', 'price3'],
-            'special' => ['course4', 'price4']
-          ];
-
-          foreach ($data as $key => $items):
-            if ( !empty($items)):
-        ?>
+            foreach ($data as $key => $items):
+          ?>
           <table class="page-price-tables__table page-price-table" id="<?php echo esc_attr($key); ?>" aria-label="<?php echo esc_html($labels[$key]).'の価格表'; ?>">
             <thead class="page-price-table__head">
               <tr>
@@ -58,21 +69,22 @@
               </tr>
             </thead>
             <tbody class="page-price-table__body">
-            <?php foreach ($items as $item): ?>
+              <?php foreach ($items as $item): ?>
               <tr>
                 <th><?php echo esc_html($item[$courses[$key][0]]); ?></th>
                 <td><?php echo esc_html('¥' .number_format($item[$courses[$key][1]])); ?></td>
               </tr>
-            <?php endforeach; ?>
+              <?php endforeach; ?>
             </tbody>
           </table>
           <!-- /.page-price-tables__table .page-price-table -->
-        <?php endif; endforeach; ?>
+          <?php endforeach; ?>
         </div>
         <!-- /.page-price__content .page-price-tables -->
       </div>
       <!-- /.page-price__inner .inner -->
     </section>
     <!-- /.page-price -->
+    <?php endif; ?>
 
 <?php get_footer(); ?>

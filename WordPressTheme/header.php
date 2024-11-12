@@ -8,8 +8,7 @@
 </head>
 
 <body class="<?php if (is_404()) echo 'is-404'; ?>">
-<?php $is_front_page = is_front_page(); ?>
-<?php if ($is_front_page): ?>
+  <?php if (is_front_page()): ?>
   <div class="loader">
     <div class="loader__image">
       <div class="loader__image-wrap">
@@ -36,24 +35,17 @@
       <p class="loader__text">into the ocean</p>
     </div>
   </div>
-<?php endif; ?>
+  <!-- /.loader -->
+  <?php endif; ?>
 
   <header class="header layout-header">
     <div class="header__inner">
-    <!-- フロントページのみh1タグ、下層ページはdivタグに変更させる -->
-    <?php if ($is_front_page): ?>
-      <h1 class="header__logo">
-    <?php else: ?>
-      <div class="header__logo">
-    <?php endif; ?>
+      <!-- フロントページのみh1タグ、下層ページはdivタグに変更させる -->
+      <<?php echo is_front_page() ? 'h1' : 'div'; ?> class="header__logo">
         <a class="header__logo-link" href="<?php echo esc_url( home_url( '/' )); ?>">
           <img src="<?php echo esc_url( get_theme_file_uri()); ?>/assets/images/svg/CodeUps.svg" alt="CodeUps" width="133" height="50" loading="eager">
         </a>
-    <?php if ($is_front_page): ?>
-      </h1>
-    <?php else: ?>
-      </div>
-    <?php endif; ?>
+      </<?php echo is_front_page() ? 'h1' : 'div'; ?>>
       <!-- /.header__logo -->
       <button type="button" class="header__hamburger hamburger js-hamburger u-mobile" aria-label="メインのナビゲーションメニューを開く">
         <span></span>

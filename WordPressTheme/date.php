@@ -23,21 +23,18 @@
       <div class="archive-blog__inner inner">
         <div class="archive-blog__body">
           <div class="archive-blog__main">
+            <?php if (have_posts()): ?>
             <div class="archive-blog__cards blog-cards blog-cards--archive">
-            <?php
-              if (have_posts()):
-                while (have_posts()):
-                  the_post();
-            ?>
+              <?php while (have_posts()): the_post(); ?>
               <a href="<?php the_permalink(); ?>" class="blog-cards__item blog-card">
                 <div class="blog-card__inner">
                   <figure class="blog-card__image">
                     <picture>
-                    <?php if (has_post_thumbnail()): ?>
+                      <?php if (has_post_thumbnail()): ?>
                       <?php the_post_thumbnail('full'); ?>
-                    <?php else: ?>
+                      <?php else: ?>
                       <img src="<?php echo esc_url( get_theme_file_uri()); ?>/assets/images/common/no-image.png" alt="no image" width="301" height="201" loading="lazy">
-                    <?php endif; ?>
+                      <?php endif; ?>
                     </picture>
                   </figure>
                   <div class="blog-card__content">
@@ -47,7 +44,7 @@
                   </div>
                 </div>
               </a>
-            <?php endwhile; endif; ?>
+              <?php endwhile; ?>
             </div>
             <!-- /.archive-blog__cards .blog-cards .blog-cards--archive -->
             <div class="archive-blog__page-navigation">
@@ -56,10 +53,14 @@
               } ?>
             </div>
             <!-- /.archive-blog__page-navigation -->
+            <?php endif; ?>
           </div>
           <!-- /.archive-blog__main -->
           
-          <?php get_sidebar(); ?>
+          <div class="archive-blog__side">
+            <?php get_sidebar(); ?>
+          </div>
+          <!-- /.archive-blog__side -->
 
         </div>
         <!-- /.archive-blog__body -->
