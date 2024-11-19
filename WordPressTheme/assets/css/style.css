@@ -3771,6 +3771,10 @@ html {
 	margin-top: 1.5625rem;
 }
 
+.campaign-card__archive-container {
+	margin-top: 2rem;
+}
+
 .campaign-card__archive-date {
 	color: #408f95;
 	display: block;
@@ -3780,7 +3784,6 @@ html {
 	letter-spacing: 0.03em;
 	line-height: 1.125;
 	margin-left: -0.75rem;
-	margin-top: 2rem;
 	text-align: center;
 	text-indent: 0.03em;
 }

@@ -452,6 +452,18 @@ function add_origin_thanks_page() {
 add_action('wp_footer', 'add_origin_thanks_page');
 
 /*==========================
+# reCAPTCHA v3のロゴをcontactページのみ表示させる
+==========================*/
+function google_recaptcha_v3() {
+  if ( !is_page('contact')) {
+    wp_deregister_script('google-recaptcha');
+    wp_deregister_script('wpcf7-recaptcha');
+  }
+}
+
+add_action('wp_enqueue_scripts', 'google_recaptcha_v3', 99);
+
+/*==========================
 # クラシックエディタ (ブロックエディタを無効化)
 ==========================*/
 // add_filter('use_block_editor_for_post', '__return_false');

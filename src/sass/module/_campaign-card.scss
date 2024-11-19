@@ -203,6 +203,12 @@
   font-size: rem(16);
   font-weight: $regular;
   line-height: calc(24 / 16);
+
+}
+.campaign-card__archive-container {
+  @include mq("md") {
+    margin-top: rem(32);
+  }
 }
 .campaign-card__archive-date {
   @include mq("md") {
@@ -215,7 +221,6 @@
     text-indent: 0.03em;
     font-family: $sub-english-font-family;
     text-align: center;
-    margin-top: rem(32);
     margin-left: rem(-12);
   }
 }

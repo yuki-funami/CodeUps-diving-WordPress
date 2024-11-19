@@ -10,10 +10,18 @@
             $sp_mv_group = get_field('sp_mv');
             $pc_mv_group = get_field('pc_mv');
 
-            for ($i = 1; $i <= 4; $i++):
-              // サブフィールドを取得
-              $sp_mv = $sp_mv_group['sp_mv_'.$i];
-              $pc_mv = $pc_mv_group['pc_mv_'.$i];
+            // インデックスで配列を取得
+            $sp_mv_values = array_values($sp_mv_group);
+            $pc_mv_values = array_values($pc_mv_group);
+
+            foreach ($sp_mv_values as $index => $sp_mv):
+              // pc_mvのデータをインデックスで取得
+              $pc_mv = $pc_mv_values[$index];
+
+              // どちらかが空の場合はスキップ
+              if (empty($sp_mv) || empty($pc_mv)) {
+                continue;
+              }
           ?>
           <div class="swiper-slide">
             <div class="mv__image">
@@ -24,7 +32,7 @@
               </picture>
             </div>
           </div>
-          <?php endfor; ?>
+          <?php endforeach; ?>
         </div>
         <!-- /.swiper-wrapper -->
       </div>

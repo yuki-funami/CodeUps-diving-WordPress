@@ -80,6 +80,10 @@
 
             // 'campaign_period' フィールドを取得
             $campaign_period = get_field('campaign_period');
+
+            // 'campaign_period' フィールドの各データを取得
+            $campaign_period_start = get_field_value($campaign_period, 'campaign_period_start');
+            $campaign_period_end = get_field_value($campaign_period, 'campaign_period_end');
           ?>
           <article class="archive-campaign-cards__card campaign-card">
             <figure class="campaign-card__image campaign-card__image--archive">
@@ -117,18 +121,21 @@
                   <?php echo nl2br( esc_textarea($campaign_text)); ?>
                 </p>
                 <?php endif; ?>
-                <?php if ($campaign_period): ?>
-                <p class="campaign-card__archive-date">
-                  <?php echo esc_html($campaign_period); ?>
-                </p>
-                <?php endif; ?>
-                <a href="<?php echo esc_url( home_url( '/contact/' )); ?>" class="campaign-card__archive-link">ご予約・お問い合わせはコチラ</a>
-                <div class="campaign-card__archive-button">
-                  <a href="<?php echo esc_url( home_url( '/contact/' )); ?>" class="button">
-                    <span>contact us</span>
-                    <span></span>
-                  </a>
+                <div class="campaign-card__archive-container">
+                  <?php if ($campaign_period_start && $campaign_period_end): ?>
+                  <p class="campaign-card__archive-date">
+                    <?php echo esc_html($campaign_period_start); ?>-<?php echo esc_html($campaign_period_end); ?>
+                  </p>
+                  <?php endif; ?>
+                  <a href="<?php echo esc_url( home_url( '/contact/' )); ?>" class="campaign-card__archive-link">ご予約・お問い合わせはコチラ</a>
+                  <div class="campaign-card__archive-button">
+                    <a href="<?php echo esc_url( home_url( '/contact/' )); ?>" class="button">
+                      <span>contact us</span>
+                      <span></span>
+                    </a>
+                  </div>
                 </div>
+                <!-- /.campaign-card__archive-container -->
               </div>
               <!-- /.campaign-card__archive -->
             </div>
