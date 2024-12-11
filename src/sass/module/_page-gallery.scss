@@ -56,16 +56,16 @@
   @include mq("md") {
     aspect-ratio: 580 / 369;
   }
+  @media (any-hover: hover) {
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
 }
 .page-gallery__images picture:nth-child(1) img,
 .page-gallery__images picture:nth-child(6) img {
   aspect-ratio: 345 / 523;
   @include mq("md") {
     aspect-ratio: 492 / 746;
-  }
-}
-@media (any-hover: hover) {
-  .page-gallery__images picture img:hover {
-    transform: scale(1.05);
   }
 }

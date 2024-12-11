@@ -15,9 +15,11 @@
     margin-left: rem(21);
   }
 }
-@media (any-hover: hover) {
-  .footer-sns__item-link:hover {
-    opacity: 0.7;
+.footer-sns__item-link {
+  @media (any-hover: hover) {
+    &:hover {
+      opacity: 0.7;
+    }
   }
 }
 .footer-sns__item-link img {

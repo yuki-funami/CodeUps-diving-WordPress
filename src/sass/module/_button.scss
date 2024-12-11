@@ -17,6 +17,17 @@
   padding: rem(15);
   margin-left: rem(-3);
   z-index: 1;
+  @media (any-hover: hover) {
+    &:hover span {
+      color: $accent;
+    }
+    &:hover::after {
+      transform: scale(1, 1);
+    }
+    &:hover span:last-child {
+      border-color: $accent;
+    }
+  }
 }
 .button::first-letter {
   text-transform: uppercase;
@@ -50,6 +61,14 @@
   color: $accent;
   background-color: $white;
   border-color: $white;
+  @media (any-hover: hover) {
+    &:hover span {
+      color: $white;
+    }
+    &:hover span:last-child {
+      border-color: $white;
+    }
+  }
 }
 .button--white::before {
   border-color: $white;
@@ -71,21 +90,4 @@
 }
 .button--white span:last-child {
   border-color: $accent;
-}
-@media (any-hover: hover) {
-  .button:hover span {
-    color: $accent;
-  }
-  .button--white:hover span {
-    color: $white;
-  }
-  .button:hover::after {
-    transform: scale(1, 1);
-  }
-  .button:hover span:last-child {
-    border-color: $accent;
-  }
-  .button--white:hover span:last-child {
-    border-color: $white;
-  }
 }

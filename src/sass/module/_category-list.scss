@@ -29,11 +29,11 @@
   padding-block: rem(5);
   padding-inline: 0;
   transition: color 0.2s, background-color 0.2s;
-}
-@media (any-hover: hover) {
-  .category-list__item a:hover {
-    color: $white;
-    background-color: $accent;
+  @media (any-hover: hover) {
+    &:hover {
+      color: $white;
+      background-color: $accent;
+    }
   }
 }
 .category-list__item a.is-active {

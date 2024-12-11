@@ -10,11 +10,11 @@
   }
 }
 .campaign__inner > .campaign__slider {
-  width: 100dvw;
+  width: 100svw;
   padding-left: rem(10);
   padding-bottom: rem(15);
   margin-top: rem(24);
-  margin-right: calc(50% - 50dvw);
+  margin-right: calc(50% - 50svw);
   @include mq("md") {
     margin-top: rem(37);
   }

@@ -1,0 +1,10 @@
+/* WP管理画面ダッシュボードの独自ウィジェット */
+
+.wp-shortcut__link {
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+}
+.wp-shortcut__link span {
+  display: block;
+}

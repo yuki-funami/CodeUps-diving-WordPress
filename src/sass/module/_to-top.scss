@@ -18,6 +18,15 @@
     width: rem(80);
     height: rem(80);
   }
+  @media (any-hover: hover) {
+    &:hover {
+      background-color: rgba($color: $accent, $alpha: 1);
+      border: 1px solid $white;
+    }
+    &:hover::before {
+      border-color: $white;
+    }
+  }
 }
 .to-top.is-active {
   position: absolute;
@@ -48,13 +57,4 @@
   display: block;
   width: inherit;
   height: inherit;
-}
-@media (any-hover: hover) {
-  .to-top:hover {
-    background-color: rgba($color: $accent, $alpha: 1);
-    border: 1px solid $white;
-  }
-  .to-top:hover::before {
-    border-color: $white;
-  }
 }

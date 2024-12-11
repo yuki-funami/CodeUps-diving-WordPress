@@ -35,6 +35,17 @@
     padding-bottom: rem(32);
     padding-left: rem(72);
   }
+  @media (any-hover: hover) {
+    &:hover {
+      color: $white;
+      background-color: $accent;
+    }
+    &:hover::before {
+      @include mq("md") {
+        background-color: $white;
+      }
+    }
+  }
 }
 .tab-list__item:nth-child(1) > button::before {
   @include mq("md") {
@@ -82,18 +93,6 @@
     mask-repeat: no-repeat;
     background-color: $accent;
     transition: background-image 0.2s;
-  }
-}
-@media (any-hover: hover) {
-  .tab-list__item button:hover {
-    color: $white;
-    background-color: $accent;
-
-    &::before {
-      @include mq("md") {
-        background-color: $white;
-      }
-    }
   }
 }
 .tab-list__item button.is-active {

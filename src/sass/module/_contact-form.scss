@@ -151,6 +151,16 @@ textarea {
   border: 1px solid $accent;
   margin-left: rem(-3);
   z-index: 1;
+  @media (any-hover: hover) {
+    &:hover::after {
+      transform: scale(1, 1);
+    }
+    &:hover {
+      .wpcf7-submit {
+        color: $accent;
+      }
+    }
+  }
 }
 .contact-form__submit-button::before {
   content: "";
@@ -180,6 +190,11 @@ textarea {
   position: relative;
   width: inherit;
   height: inherit;
+  @media (any-hover: hover) {
+    &:hover::after {
+      border-color: $accent;
+    }
+  }
 }
 .contact-form__submit-arrow::after {
   content: "";
@@ -192,17 +207,4 @@ textarea {
   border-right: 2px solid $white;
   transform: skew(50deg);
   margin-top: rem(-3);
-}
-@media (any-hover: hover) {
-  .contact-form__submit-button:hover::after {
-    transform: scale(1, 1);
-  }
-  .contact-form__submit-button:hover {
-    .wpcf7-submit {
-      color: $accent;
-    }
-  }
-  .contact-form__submit-arrow:hover::after {
-    border-color: $accent;
-  }
 }

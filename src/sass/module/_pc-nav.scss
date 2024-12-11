@@ -20,6 +20,11 @@
   align-items: center;
   text-align: center;
   height: inherit;
+  @media (any-hover: hover) {
+    &:hover::after {
+      transform: scale(1, 1);
+    }
+  }
 }
 .pc-nav__item a::after {
   content: "";
@@ -33,11 +38,6 @@
   transition: all 0.3s;
   transform: scale(0, 1);
   transform-origin: center top;
-}
-@media (any-hover: hover) {
-  .pc-nav__item a:hover::after {
-    transform: scale(1, 1);
-  }
 }
 .pc-nav__item-english {
   color: $white;

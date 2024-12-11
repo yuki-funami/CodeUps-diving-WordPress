@@ -388,9 +388,9 @@ add_action('init', 'disable_editor_for_posts');
 // function add_block_editor_styles() {
 //   wp_enqueue_style(
 //     'editor-style-css',
-//     get_theme_file_uri('/assets/css/editor-style.css'),
+//     get_theme_file_uri('/editor-style.css'),
 //     array(),
-//     filemtime(get_theme_file_path('/assets/css/editor-style.css'))
+//     filemtime(get_theme_file_path('/editor-style.css'))
 //   );
 // }
 
@@ -476,3 +476,74 @@ function disable_menus() {
 }
 
 add_action('admin_menu', 'disable_menus');
+
+/*==========================
+# 管理画面のダッシュボードを編集
+==========================*/
+function load_dashicons() {
+  wp_enqueue_style('dashicons');
+}
+
+add_action('wp_print_styles', 'load_dashicons');
+
+// 不要なウィジェットを非表示
+function remove_dashboard_widget() {
+  // remove_meta_box('dashboard_site_health', 'dashboard', 'normal'); // サイトヘルスステータス
+  remove_meta_box('dashboard_right_now', 'dashboard', 'normal'); // 概要
+  // remove_meta_box('dashboard_activity', 'dashboard', 'normal'); // アクティビティ
+  remove_meta_box('dashboard_quick_press', 'dashboard', 'side'); // クイックドラフト
+  remove_meta_box('dashboard_primary', 'dashboard', 'side'); // イベントとニュース
+  remove_action('welcome_panel', 'wp_welcome_panel'); // ウェルカムパネル
+}
+
+add_action('wp_dashboard_setup', 'remove_dashboard_widget');
+
+// 独自のウィジェットを追加
+function add_dashboard_widget() {
+  wp_add_dashboard_widget(
+    'shortcut_dashboard_widget', // ウィジェットのスラッグ
+    'ショートカット', // ウィジェットに表示するタイトル
+    'dashboard_widget_function', // 実行する関数
+  );
+}
+
+add_action('wp_dashboard_setup', 'add_dashboard_widget');
+
+// 独自ウィジェットのHTMLを定義
+function dashboard_widget_function() {
+  ?>
+  <p>各種設定項目の変更は、こちらのショートカットから移動できます。</p>
+  <ul class="wp-shortcut">
+    <li>
+      <a href="<?php echo admin_url( 'post.php?post=8&action=edit' ); ?>" class="wp-shortcut__link">
+        <span class="dashicons-before dashicons-format-image"></span>
+        <span>トップページのメインビュースライド画像</span>
+      </a>
+    </li>
+    <li>
+      <a href="<?php echo admin_url( 'post.php?post=31&action=edit' ); ?>" class="wp-shortcut__link">
+      <span class="dashicons-before dashicons-format-gallery"></span>
+      <span>私たちについてページのフォト画像</span>
+      </a>
+    </li>
+    <li>
+      <a href="<?php echo admin_url( 'post.php?post=42&action=edit' ); ?>" class="wp-shortcut__link">
+      <span class="dashicons-before dashicons-palmtree"></span>
+      <span>料金一覧ページのコース追加変更</span>
+      </a>
+    </li>
+  </ul>
+  <?php
+}
+
+// CSSの読み込み(ダッシュボードのみ)
+function enqueue_dashboard_styles() {
+  wp_enqueue_style(
+    'dashboard-style-css',
+    get_theme_file_uri('/dashboard-style.css'),
+    array(),
+    filemtime(get_theme_file_path('/dashboard-style.css'))
+  );
+}
+
+add_action('admin_print_styles-index.php', 'enqueue_dashboard_styles');

@@ -4,8 +4,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100dvw;
-  height: calc(100dvh - rem(80));
+  width: 100svw;
+  height: calc(100svh - rem(80));
   background-color: $accent;
   margin-top: rem(80);
   opacity: 0;
@@ -21,8 +21,8 @@
 .sp-nav__items {
   column-count: 2;
   column-gap: rem(30);
-  padding-left: 9.7dvw;
-  padding-right: 5.4dvw;
+  padding-left: 9.7svw;
+  padding-right: 5.4svw;
   margin-top: rem(24);
 }
 .sp-nav__item {

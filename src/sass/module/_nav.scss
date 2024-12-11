@@ -37,6 +37,11 @@
   font-size: rem(16);
   font-weight: $bold;
   line-height: calc(18 / 16);
+  @media (any-hover: hover) {
+    &:hover {
+      opacity: 0.7;
+    }
+  }
 }
 .nav__item > a::before {
   content: "";
@@ -63,12 +68,9 @@
   font-size: rem(16);
   font-weight: $regular;
   line-height: calc(18 / 16);
-}
-@media (any-hover: hover) {
-  .nav__item > a:hover {
-    opacity: 0.7;
-  }
-  .nav__small-item > a:hover {
-    opacity: 0.7;
+  @media (any-hover: hover) {
+    &:hover {
+      opacity: 0.7;
+    }
   }
 }
