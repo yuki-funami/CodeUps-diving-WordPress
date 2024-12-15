@@ -2,12 +2,10 @@
 
 .price {
   background-color: $pastel;
-  padding-top: rem(80);
-  padding-bottom: rem(80);
+  padding-block: rem(80);
   @include mq("md") {
     position: relative;
-    padding-top: rem(99);
-    padding-bottom: rem(100);
+    padding-block: rem(100);
   }
 }
 .price::before {

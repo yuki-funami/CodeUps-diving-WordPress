@@ -27,7 +27,6 @@
   background-color: $white;
   border: 1px solid $accent;
   padding-block: rem(5);
-  padding-inline: 0;
   transition: color 0.2s, background-color 0.2s;
   @media (any-hover: hover) {
     &:hover {

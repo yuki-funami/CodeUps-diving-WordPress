@@ -1,7 +1,7 @@
 @use "global" as *;
 
 // WordPress化に対応し、セレクタを変更
-// margin-top はWordPress管理画面のスペーサーで対応
+// 本文中の余白(margin-top)は、WordPress管理画面のスペーサーで対応
 .terms__title {
   color: $black;
   font-size: rem(24);

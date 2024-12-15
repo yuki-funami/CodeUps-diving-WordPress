@@ -6,7 +6,7 @@
   bottom: rem(16);
   right: rem(15);
   width: rem(48);
-  height: rem(48);
+  aspect-ratio: 1;
   background-color: rgba($color: $white, $alpha: 0.8);
   border: 1px solid $accent;
   border-radius: 50%;
@@ -16,7 +16,6 @@
     bottom: rem(20);
     right: rem(20);
     width: rem(80);
-    height: rem(80);
   }
   @media (any-hover: hover) {
     &:hover {
@@ -32,7 +31,7 @@
   position: absolute;
   bottom: calc(rem(790) + rem(16));
   @include mq("md") {
-    bottom: calc(rem(559) + rem(20));
+    bottom: calc(rem(607) + rem(20));
   }
 }
 .to-top::before {

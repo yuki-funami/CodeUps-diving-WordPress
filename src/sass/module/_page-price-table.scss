@@ -86,8 +86,7 @@ table {
   @include mq("md") {
     text-align: left;
     width: calc(340 / 500 * 100%);
-    padding-block: rem(17);
-    padding-inline: rem(15);
+    padding: rem(17) rem(15);
   }
 }
 .page-price-table__body tr:first-child th {
@@ -98,8 +97,7 @@ table {
 }
 .page-price-table__body tr td {
   text-align: right;
-  padding-block: rem(17);
-  padding-right: rem(15);
+  padding: rem(17) rem(15);
   border-right: 1px solid $accent;
 }
 .page-price-table__body tr:first-child td {

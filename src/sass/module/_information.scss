@@ -2,11 +2,9 @@
 
 .information {
   background-color: $pastel;
-  padding-top: rem(80);
-  padding-bottom: rem(80);
+  padding-block: rem(80);
   @include mq("md") {
-    padding-top: rem(100);
-    padding-bottom: rem(100);
+    padding-block: rem(100);
   }
 }
 .information__inner {

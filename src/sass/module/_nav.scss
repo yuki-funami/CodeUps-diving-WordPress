@@ -8,24 +8,20 @@
 }
 .nav__items {
   column-count: 2;
-  column-gap: rem(30);
+  column-gap: rem(45);
   padding-left: rem(22);
-  margin-right: -15px;
   @include mq("md") {
     column-count: 4;
-    column-gap: rem(44);
-    padding-left: rem(22);
-    margin-right: 0;
   }
 }
 .nav__items--sitemap {
-  column-gap: rem(50);
+  column-gap: rem(67);
   @include mq("md") {
     column-gap: rem(139);
   }
 }
 .nav__item {
-  width: 100%;
+  width: max-content;
   margin-top: rem(40);
 }
 .nav__item:first-child {

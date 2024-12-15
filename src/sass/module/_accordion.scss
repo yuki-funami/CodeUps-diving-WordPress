@@ -22,12 +22,9 @@ summary::-webkit-details-marker {
   justify-content: space-between;
   align-items: center;
   background-color: $accent;
-  padding-block: rem(17);
-  padding-left: rem(16);
-  padding-right: rem(18);
+  padding: rem(17);
   @include mq("md") {
-    padding-block: rem(28);
-    padding-inline: rem(40);
+    padding: rem(28) rem(40);
   }
 }
 .accordion__question-text {
@@ -51,8 +48,7 @@ summary::-webkit-details-marker {
 .accordion__icon::before {
   content: "";
   position: absolute;
-  top: 50%;
-  left: 0;
+  inset: 0;
   transform: translateY(-50%);
   width: rem(28);
   height: rem(1);
@@ -65,8 +61,7 @@ summary::-webkit-details-marker {
 .accordion__icon::after {
   content: "";
   position: absolute;
-  top: 50%;
-  left: 0;
+  inset: 0;
   transform: translateY(-50%) rotate(90deg);
   width: rem(28);
   height: rem(1);
@@ -89,9 +84,8 @@ summary::-webkit-details-marker {
   font-size: rem(16);
   font-weight: $regular;
   line-height: calc(23 / 16);
-  padding-block: rem(23);
-  padding-inline: rem(16);
+  padding: rem(23) rem(16);
   @include mq("md") {
-    padding: rem(39);
+    padding: rem(40);
   }
 }

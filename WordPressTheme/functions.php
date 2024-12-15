@@ -469,6 +469,21 @@ add_action('wp_enqueue_scripts', 'google_recaptcha_v3', 99);
 // add_filter('use_block_editor_for_post', '__return_false');
 
 /*==========================
+# 管理画面のヘッダーで不要なメニューを非表示
+==========================*/
+function remove_admin_bar($wp_admin_bar) {
+  // var_dump($wp_admin_bar); // 対象の値を確認できる
+  // $wp_admin_bar->remove_menu('wp-logo'); // WPロゴグループ
+  // $wp_admin_bar->remove_menu('site-name'); // サイト名グループ
+  $wp_admin_bar->remove_menu('updates'); // 更新
+  $wp_admin_bar->remove_menu('comments'); // コメント
+  $wp_admin_bar->remove_menu('new-content'); // 新規グループ
+  // $wp_admin_bar->remove_menu('my-account'); // ユーザーグループ -> 9992に変更しないと消えない
+}
+
+add_action('admin_bar_menu', 'remove_admin_bar', 80);
+
+/*==========================
 # 管理画面のメニューを非表示 (コメントを非表示)
 ==========================*/
 function disable_menus() {

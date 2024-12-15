@@ -1,7 +1,9 @@
 @use "global" as *;
 
 .sub-mv {
+  display: grid;
   position: relative;
+  place-items: center;
   width: 100%;
   height: rem(460);
   @include mq("md") {
@@ -24,13 +26,10 @@
 }
 .sub-mv__content {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
   width: 100%;
   z-index: 1;
   @include mq("md") {
-    top: 59%;
+    top: 50%;
   }
 }
 .sub-mv__title {
