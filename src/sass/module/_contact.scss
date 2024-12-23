@@ -45,7 +45,7 @@
 }
 .contact__left-body {
   @include mq("md") {
-    max-width: rem(522);
+    width: calc(100% - rem(459));
     border-right: 1px solid $accent;
     padding-right: rem(80);
   }

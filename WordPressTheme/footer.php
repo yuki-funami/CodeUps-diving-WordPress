@@ -29,7 +29,7 @@
               <h2 class="section-header__subtitle section-header__subtitle--large">お問い合わせ</h2>
             </div>
             <!-- /.section-header -->
-            <a href="<?php echo esc_url( home_url( '/contact/' )); ?>" class="contact-right__link">ご予約・お問い合わせはコチラ</a>
+            <p class="contact-right__info">ご予約・お問い合わせはコチラ</p>
             <div class="contact-right__button">
               <a href="<?php echo esc_url( home_url( '/contact/' )); ?>" class="button">
                 <span>contact us</span>

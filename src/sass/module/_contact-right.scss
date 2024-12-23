@@ -1,7 +1,6 @@
 @use "global" as *;
 
-.contact-right__link {
-  display: block;
+.contact-right__info {
   color: $accent;
   font-size: rem(14);
   font-weight: $regular;

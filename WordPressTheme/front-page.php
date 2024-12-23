@@ -104,18 +104,20 @@
                   <?php endif; ?>
                   <div class="campaign-card__title"><?php the_title(); ?></div>
                   <?php if ($campaign_price): ?>
-                  <p class="campaign-card__text">全部コミコミ(お一人様)</p>
-                  <div class="campaign-card__price">
-                    <?php if ($campaign_price_before): ?>
-                    <p class="campaign-card__original-price">
-                      &yen;<?php echo number_format( esc_html($campaign_price_before)); ?>
-                    </p>
-                    <?php endif; ?>
-                    <?php if ($campaign_price_after): ?>
-                    <p class="campaign-card__discount-price">
-                      &yen;<?php echo number_format( esc_html($campaign_price_after)); ?>
-                    </p>
-                    <?php endif; ?>
+                  <div class="campaign-card__price-container">
+                    <p class="campaign-card__package">全部コミコミ(お一人様)</p>
+                    <div class="campaign-card__price">
+                      <?php if ($campaign_price_before): ?>
+                      <p class="campaign-card__original-price">
+                        &yen;<?php echo number_format( esc_html($campaign_price_before)); ?>
+                      </p>
+                      <?php endif; ?>
+                      <?php if ($campaign_price_after): ?>
+                      <p class="campaign-card__discount-price">
+                        &yen;<?php echo number_format( esc_html($campaign_price_after)); ?>
+                      </p>
+                      <?php endif; ?>
+                    </div>
                   </div>
                   <?php endif; ?>
                 </div>

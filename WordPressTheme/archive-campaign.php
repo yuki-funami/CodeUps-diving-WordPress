@@ -101,43 +101,41 @@
               <?php endif; ?>
               <h2 class="campaign-card__title campaign-card__title--archive"><?php the_title(); ?></h2>
               <?php if ($campaign_price): ?>
-              <p class="campaign-card__text campaign-card__text--archive">全部コミコミ(お一人様)</p>
-              <div class="campaign-card__price campaign-card__price--archive">
-                <?php if ($campaign_price_before): ?>
-                <p class="campaign-card__original-price">
-                  &yen;<?php echo number_format( esc_html($campaign_price_before)); ?>
-                </p>
-                <?php endif; ?>
-                <?php if ($campaign_price_after): ?>
-                <p class="campaign-card__discount-price campaign-card__discount-price--archive">
-                  &yen;<?php echo number_format( esc_html($campaign_price_after)); ?>
-                </p>
-                <?php endif; ?>
-              </div>
-              <?php endif; ?>
-              <div class="campaign-card__archive u-desktop">
-                <?php if ($campaign_text): ?>
-                <p class="campaign-card__archive-text">
-                  <?php echo nl2br( esc_textarea($campaign_text)); ?>
-                </p>
-                <?php endif; ?>
-                <div class="campaign-card__archive-container">
-                  <?php if ($campaign_period_start && $campaign_period_end): ?>
-                  <p class="campaign-card__archive-date">
-                    <?php echo esc_html($campaign_period_start); ?>-<?php echo esc_html($campaign_period_end); ?>
+              <div class="campaign-card__price-container campaign-card__price-container--archive">
+                <p class="campaign-card__package">全部コミコミ(お一人様)</p>
+                <div class="campaign-card__price campaign-card__price--archive">
+                  <?php if ($campaign_price_before): ?>
+                  <p class="campaign-card__original-price">
+                    &yen;<?php echo number_format( esc_html($campaign_price_before)); ?>
                   </p>
                   <?php endif; ?>
-                  <a href="<?php echo esc_url( home_url( '/contact/' )); ?>" class="campaign-card__archive-link">ご予約・お問い合わせはコチラ</a>
-                  <div class="campaign-card__archive-button">
-                    <a href="<?php echo esc_url( home_url( '/contact/' )); ?>" class="button">
-                      <span>contact us</span>
-                      <span></span>
-                    </a>
-                  </div>
+                  <?php if ($campaign_price_after): ?>
+                  <p class="campaign-card__discount-price campaign-card__discount-price--archive">
+                    &yen;<?php echo number_format( esc_html($campaign_price_after)); ?>
+                  </p>
+                  <?php endif; ?>
                 </div>
-                <!-- /.campaign-card__archive-container -->
               </div>
-              <!-- /.campaign-card__archive -->
+              <?php endif; ?>
+              <?php if ($campaign_text): ?>
+              <p class="campaign-card__text u-desktop">
+                <?php echo nl2br( esc_textarea($campaign_text)); ?>
+              </p>
+              <?php endif; ?>
+              <div class="campaign-card__info-container u-desktop">
+                <?php if ($campaign_period_start && $campaign_period_end): ?>
+                <p class="campaign-card__date">
+                  <?php echo esc_html($campaign_period_start); ?>-<?php echo esc_html($campaign_period_end); ?>
+                </p>
+                <?php endif; ?>
+                <p class="campaign-card__info">ご予約・お問い合わせはコチラ</p>
+                <div class="campaign-card__button">
+                  <a href="<?php echo esc_url( home_url( '/contact/' )); ?>" class="button">
+                    <span>contact us</span>
+                    <span></span>
+                  </a>
+                </div>
+              </div>
             </div>
             <!-- /.campaign-card__content .campaign-card__content--archive -->
           </article>

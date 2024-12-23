@@ -155,7 +155,7 @@
                     $campaign_price_before = get_field_value($campaign_price, 'campaign_price_before');
                     $campaign_price_after = get_field_value($campaign_price, 'campaign_price_after');
                   ?>
-                  <div class="side-campaign-cards__item campaign-card">
+                  <div class="side-campaign-cards__item campaign-card campaign-card--side">
                     <figure class="campaign-card__image campaign-card__image--side">
                       <picture>
                         <?php if ($campaign_image): ?>
@@ -167,24 +167,27 @@
                     </figure>
                     <div class="campaign-card__content campaign-card__content--side">
                       <div class="campaign-card__title campaign-card__title--side"><?php the_title(); ?></div>
-                      <p class="campaign-card__text campaign-card__text--side">全部コミコミ(お一人様)</p>
                       <?php if ($campaign_price): ?>
-                      <div class="campaign-card__price campaign-card__price--side">
-                        <?php if ($campaign_price_before): ?>
-                        <p class="campaign-card__original-price campaign-card__original-price--side">
-                          &yen;<?php echo number_format( esc_html($campaign_price_before)); ?>
-                        </p>
-                        <?php endif; ?>
-                        <?php if ($campaign_price_after): ?>
-                        <p class="campaign-card__discount-price campaign-card__discount-price--side">
-                          &yen;<?php echo number_format( esc_html($campaign_price_after)); ?>
-                        </p>
-                        <?php endif; ?>
+                      <div class="campaign-card__price-container campaign-card__price-container--side">
+                        <p class="campaign-card__package campaign-card__package--side">全部コミコミ(お一人様)</p>
+                        <div class="campaign-card__price campaign-card__price--side">
+                          <?php if ($campaign_price_before): ?>
+                          <p class="campaign-card__original-price campaign-card__original-price--side">
+                            &yen;<?php echo number_format( esc_html($campaign_price_before)); ?>
+                          </p>
+                          <?php endif; ?>
+                          <?php if ($campaign_price_after): ?>
+                          <p class="campaign-card__discount-price campaign-card__discount-price--side">
+                            &yen;<?php echo number_format( esc_html($campaign_price_after)); ?>
+                          </p>
+                          <?php endif; ?>
+                        </div>
                       </div>
                       <?php endif; ?>
                     </div>
+                    <!-- /.campaign-card__content .campaign-card__content--side -->
                   </div>
-                  <!-- /.side-campaign-cards__item .campaign-card -->
+                  <!-- /.side-campaign-cards__item .campaign-card .campaign-card--side -->
                   <?php endwhile; ?>
                 </div>
                 <!-- /.side-campaign__cards .side-campaign-cards -->

@@ -1,8 +1,7 @@
 @use "global" as *;
 
 .blog-card {
-  display: block;
-  width: 100%;
+  display: flex;
   background-color: $white;
   box-shadow: 2px 2px 10px rgba($shadow, 0.25);
   @media (any-hover: hover) {
@@ -14,6 +13,8 @@
   }
 }
 .blog-card__inner {
+  display: flex;
+  flex-direction: column;
   padding: rem(16) rem(16) rem(24);
   background-color: $white;
 }
@@ -33,6 +34,9 @@
   transition: transform 0.6s;
 }
 .blog-card__content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   margin-top: rem(23);
 }
 .blog-card__time {
@@ -44,6 +48,8 @@
   font-family: $english-font-family;
 }
 .blog-card__title {
+  flex: 1;
+  align-content: end;
   color: $black;
   font-size: rem(16);
   font-weight: $medium;
