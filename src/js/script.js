@@ -28,11 +28,13 @@ jQuery(function ($) { // この中であればWordpressでも「$」が使用可
         });
 
         $('.loader').delay(6000).fadeOut('slow', function () {
-          $('body').removeClass('no-scroll');
+          // アニメーション後にスクロールバー表示されることでレイアウトシフトが発生するため、削除
+          // $('body').removeClass('no-scroll');
           $('.loader__left-image').removeClass('is-active');
           $('.loader__right-image').removeClass('is-active');
         });
-        $('body').addClass('no-scroll');
+        // アニメーション後にスクロールバー表示されることでレイアウトシフトが発生するため、削除
+        // $('body').addClass('no-scroll');
       });
     }
   }

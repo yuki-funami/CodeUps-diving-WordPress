@@ -150,7 +150,10 @@ const jsBabel = () => {
       // エラーハンドリングを設定
       .pipe(
         plumber({
-          errorHandler: notify.onError("Error: <%= error.message %>"),
+          errorHandler: notify.onError({
+            title: "Error",
+            message: "<%= error.message %>",
+          })
         })
       )
       // Babelでトランスパイル（ES6からES5へ変換）
